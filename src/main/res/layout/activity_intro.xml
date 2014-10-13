@@ -14,9 +14,10 @@
         android:id="@+id/textView"
         android:gravity="center"
         android:textColor="#ff89723a"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:fontFamily="sans-serif" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,6 +50,6 @@
         android:text="To Start"
         android:id="@+id/textView2"
         android:textColor="#ff89723a"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 </LinearLayout>

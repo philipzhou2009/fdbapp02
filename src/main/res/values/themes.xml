@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+    <style name="MyActionBar" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>
+<!-- http://stackoverflow.com/questions/8704769/android-ics-remove-blue-divider-in-actionbar -->

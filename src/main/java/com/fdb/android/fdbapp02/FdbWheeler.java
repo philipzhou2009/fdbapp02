@@ -1,8 +1,10 @@
 package com.fdb.android.fdbapp02;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,6 +26,9 @@ public class FdbWheeler {
 
     float mRealX = 0;
     float mRealY = 0;
+
+    View mGridSelection;
+
     public FdbWheeler(String name, float xcoord, float ycoord, float degree) {
         mName = name;
         mXcoord = xcoord;
@@ -48,17 +53,14 @@ public class FdbWheeler {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView tv = (TextView)v;
-                if(wheeler.mFlag == false)
-                {
+                TextView tv = (TextView) v;
+                if (wheeler.mFlag == false) {
                     tv.setTextSize(16);
                     tv.setTypeface(Typeface.DEFAULT_BOLD);
                     tv.setShadowLayer((float) 0.06, 5, 5, Color.BLACK);
                     wheeler.mFlag = true;
                     //activity.drawFlower();
-                }
-                else
-                {
+                } else {
                     tv.setTextSize(14);
                     tv.setTypeface(Typeface.DEFAULT);
                     tv.setShadowLayer((float) 0, 3, 3, Color.BLACK);
@@ -73,13 +75,47 @@ public class FdbWheeler {
     }
 
     public void grayOut() {
-        if(mFlag == false) {
+        if (mFlag == false) {
             mTV.setOnClickListener(null);
             mTV.setTextColor(Color.GRAY);
-        }
-        else
-        {
+        } else {
             mTV.setOnClickListener(null);
         }
+    }
+
+    public View createGridSelection(final SelectionsActivity context) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View grid = new View(context);
+        grid = inflater.inflate(R.layout.grid_selection, null);
+        TextView textView = (TextView) grid.findViewById(R.id.grid_text);
+        textView.setText(mName);
+
+        mGridSelection = grid;
+
+        final FdbWheeler wheeler = this;
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv = (TextView)v;
+                if(wheeler.mFlag == false)
+                {
+                    tv.setTextSize(26);
+                    tv.setTypeface(Typeface.DEFAULT_BOLD);
+                    tv.setShadowLayer((float) 0.06, 3, 5, Color.GRAY);
+                    wheeler.mFlag = true;
+                }
+                else
+                {
+                    tv.setTextSize(22);
+                    tv.setTypeface(Typeface.DEFAULT);
+                    tv.setShadowLayer((float) 0, 3, 3, Color.BLACK);
+                    wheeler.mFlag = false;
+                }
+                context.showColorWheelButton();
+            }
+        });
+
+        return grid;
     }
 }

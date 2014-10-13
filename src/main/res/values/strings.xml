@@ -7,6 +7,7 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="introduction">Introduction</string>
     <string name="intros">Fragrance Du Bois app helps choose your favorite fragrances.\n Tap screen to start.</string>
-    <string name="title_activity_selections">SelectionsActivity</string>
+    <string name="title_activity_selections">Make 3 Choices</string>
+    <string name="colorwheel">Color Wheel</string>
 
 </resources>

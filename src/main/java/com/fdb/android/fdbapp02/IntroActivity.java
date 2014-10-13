@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class IntroActivity extends Activity {
@@ -35,7 +36,7 @@ public class IntroActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void startSelections() {
+    public void startSelections(View view) {
         Intent myIntent;
         myIntent = new Intent(this, SelectionsActivity.class);
         startActivityForResult(myIntent, 0);

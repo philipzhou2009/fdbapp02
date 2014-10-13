@@ -7,16 +7,20 @@
     android:padding="5dp"
     android:orientation="vertical"
     android:gravity="center">
+    <!--
     <ImageView
         android:id="@+id/grid_image"
         android:layout_width="400dp"
         android:layout_height="312dp">
     </ImageView>
+    -->
     <TextView
         android:id="@+id/grid_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:textSize="16sp">
+        android:textSize="22sp"
+        android:textColor="#ff89723a"
+        android:textStyle="normal">
     </TextView>
 </LinearLayout>
