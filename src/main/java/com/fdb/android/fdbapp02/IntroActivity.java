@@ -1,6 +1,7 @@
 package com.fdb.android.fdbapp02;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +36,9 @@ public class IntroActivity extends Activity {
     }
 
     public void startSelections() {
+        Intent myIntent;
+        myIntent = new Intent(this, SelectionsActivity.class);
+        startActivityForResult(myIntent, 0);
 
     }
 }
