@@ -37,8 +37,7 @@ public class FdbWheeler {
         mFlag = false;
     }
 
-    //public TextView createTextView(final Activity activity) {
-    public TextView createTextView(final Activity activity) {
+    public TextView createTextView0(final Activity activity) {
         TextView tv = new TextView(activity);
         tv.setText(mName);
         tv.setTextColor(Color.WHITE);
@@ -97,16 +96,13 @@ public class FdbWheeler {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView tv = (TextView)v;
-                if(wheeler.mFlag == false)
-                {
+                TextView tv = (TextView) v;
+                if (wheeler.mFlag == false) {
                     tv.setTextSize(26);
                     tv.setTypeface(Typeface.DEFAULT_BOLD);
                     tv.setShadowLayer((float) 0.06, 3, 5, Color.GRAY);
                     wheeler.mFlag = true;
-                }
-                else
-                {
+                } else {
                     tv.setTextSize(22);
                     tv.setTypeface(Typeface.DEFAULT);
                     tv.setShadowLayer((float) 0, 3, 3, Color.BLACK);
@@ -117,5 +113,22 @@ public class FdbWheeler {
         });
 
         return grid;
+    }
+
+    public TextView createTextView(final Activity activity) {
+        TextView tv = new TextView(activity);
+        tv.setText(mName);
+        tv.setTextColor(Color.WHITE);
+        tv.setRotation(mDegree);
+
+        mRealX = mXcoord + mLX;
+        mRealY = mYcoord + mLY;
+        tv.setX(mRealX);
+        tv.setY(mRealY);
+
+        mTV = tv;
+        mFlag = true;
+
+        return tv;
     }
 }

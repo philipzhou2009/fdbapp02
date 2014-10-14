@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.myapplication.ColorWheel"
+    android:background="#ffffffff"
+    android:id="@+id/colorWheelLayout">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/colour_wheel_w1600"
+        android:scaleType="fitCenter"
+        android:contentDescription="bottles"
+        android:id="@+id/imageView2"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>

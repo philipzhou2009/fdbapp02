@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Fragrance Du Bois</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -10,4 +9,10 @@
     <string name="title_activity_selections">Make 3 Choices</string>
     <string name="colorwheel">Color Wheel</string>
 
+    <string name="title_notes">Notes</string>
+    <string name="action_previous">Previous</string>
+    <string name="action_next">Next</string>
+    <string name="action_finish">Finish</string>
+    <string name="title_perfumer">Perfumer</string>
+    <string name="title_activity_color_wheel">Color Wheel</string>
 </resources>

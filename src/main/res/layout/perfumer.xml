@@ -1,0 +1,75 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/background_540"
+            android:scaleType="centerCrop"
+            android:contentDescription="bottles"
+            android:id="@+id/imageView2"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/perfume"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="#c8006488"
+            android:layout_alignParentTop="false">
+
+            <ImageView
+                android:layout_width="141dp"
+                android:layout_height="190dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/logo_gold_effect_hr_2_500" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/perfumeTitle"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/perfumerName"
+                android:layout_gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="240dp"
+                android:id="@+id/perfumerImage"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/perfumerProfile"
+                android:layout_gravity="center|top"
+                android:layout_marginLeft="120dp"
+                android:layout_marginRight="120dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Tap"
+        android:text="Tap "
         android:id="@+id/textView"
         android:gravity="center"
         android:textColor="#ff89723a"
@@ -19,18 +19,9 @@
         android:layout_gravity="center_vertical"
         android:fontFamily="sans-serif" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="  "
-        android:id="@+id/textView3"
-        android:layout_gravity="center_vertical"
-        android:textSize="60sp" />
-
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:id="@+id/imageView"
         android:src="@drawable/icon"
         android:onClick="startSelections" />
@@ -39,15 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="  "
-        android:id="@+id/textView4"
-        android:textSize="60sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="To Start"
+        android:text=" To Start"
         android:id="@+id/textView2"
         android:textColor="#ff89723a"
         android:textSize="30sp"

@@ -4,6 +4,9 @@ package com.fdb.android.fdbapp02;
  * Created by philip on 10/13/14.
  */
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -41,6 +44,27 @@ public class FdbHelper {
             this.mYcoord = ycoord;
             this.mDegree = degree;
         }
+    }
+
+    static public List<FdbWheeler> loadPersonalityXml(Activity activity) throws XmlPullParserException, IOException {
+        InputStream stream = null;
+        FdbHelper xmlParser = new FdbHelper();
+        List<FdbWheeler> list = null;
+
+        AssetManager assetMgr = activity.getAssets();
+
+        try {
+            stream = assetMgr.open("personalities.xml");
+            list = xmlParser.parseWheeler(stream);
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } finally {
+            if (stream != null) {
+                stream.close();
+            }
+        }
+
+        return list;
     }
 
     public List<Personality> parse(InputStream in) throws XmlPullParserException, IOException {
@@ -190,6 +214,32 @@ public class FdbHelper {
             }
         }
         return new FdbWheeler(title, xcoord, ycoord, degree);
+    }
+
+    static public List<PerfumeXmlParser.Entry> loadPerfumeXml(Activity activity) throws XmlPullParserException, IOException {
+        InputStream stream = null;
+        PerfumeXmlParser perfumeXmlParser = new PerfumeXmlParser();
+        List<PerfumeXmlParser.Entry> entries = null;
+        String title = null;
+        String url = null;
+        String summary = null;
+        //Calendar rightNow = Calendar.getInstance();
+        //DateFormat formatter = new SimpleDateFormat("MMM dd h:mmaa");
+
+        AssetManager assetMgr = activity.getAssets();
+
+        try {
+            stream = assetMgr.open("perfumes.xml");
+            entries = perfumeXmlParser.parse(stream);
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } finally {
+            if (stream != null) {
+                stream.close();
+            }
+        }
+
+        return entries;
     }
 }
 

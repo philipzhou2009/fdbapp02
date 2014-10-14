@@ -30,6 +30,17 @@
             android:name=".SelectionsActivity"
             android:label="@string/title_activity_selections" >
         </activity>
+
+        <activity
+            android:name=".ColorWheel"
+            android:label="@string/colorwheel">
+        </activity>
+
+        <activity
+            android:name=".ScreenSlideActivity"
+            android:label="@string/title_notes"
+            android:uiOptions="splitActionBarWhenNarrow" >
+        </activity>
     </application>
 
 </manifest>
