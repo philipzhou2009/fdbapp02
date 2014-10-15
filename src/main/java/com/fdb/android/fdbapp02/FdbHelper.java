@@ -67,6 +67,30 @@ public class FdbHelper {
         return list;
     }
 
+    static public List<PerfumeXmlParser.Entry> loadPerfumeXml(Activity activity) throws XmlPullParserException, IOException {
+        InputStream stream = null;
+        PerfumeXmlParser perfumeXmlParser = new PerfumeXmlParser();
+        List<PerfumeXmlParser.Entry> entries = null;
+        String title = null;
+        String url = null;
+        String summary = null;
+
+        AssetManager assetMgr = activity.getAssets();
+
+        try {
+            stream = assetMgr.open("perfumes.xml");
+            entries = perfumeXmlParser.parse(stream);
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } finally {
+            if (stream != null) {
+                stream.close();
+            }
+        }
+
+        return entries;
+    }
+
     public List<Personality> parse(InputStream in) throws XmlPullParserException, IOException {
         try {
             XmlPullParser parser = Xml.newPullParser();
@@ -216,30 +240,85 @@ public class FdbHelper {
         return new FdbWheeler(title, xcoord, ycoord, degree);
     }
 
-    static public List<PerfumeXmlParser.Entry> loadPerfumeXml(Activity activity) throws XmlPullParserException, IOException {
+    static public List<FdbAddition> loadAdditionsXml(Activity activity) throws XmlPullParserException, IOException {
         InputStream stream = null;
-        PerfumeXmlParser perfumeXmlParser = new PerfumeXmlParser();
-        List<PerfumeXmlParser.Entry> entries = null;
+        FdbHelper xmlParser = new FdbHelper();
+        List<FdbAddition> Additions = null;
         String title = null;
         String url = null;
         String summary = null;
-        //Calendar rightNow = Calendar.getInstance();
-        //DateFormat formatter = new SimpleDateFormat("MMM dd h:mmaa");
 
         AssetManager assetMgr = activity.getAssets();
 
         try {
-            stream = assetMgr.open("perfumes.xml");
-            entries = perfumeXmlParser.parse(stream);
-            // Makes sure that the InputStream is closed after the app is
-            // finished using it.
+            stream = assetMgr.open("additions.xml");
+            Additions = xmlParser.parseAdditions(stream);
         } finally {
             if (stream != null) {
                 stream.close();
             }
         }
 
+        return Additions;
+    }
+
+    public List<FdbAddition> parseAdditions(InputStream in) throws XmlPullParserException, IOException {
+        try {
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in, null);
+            parser.nextTag();
+            return readAdditions(parser);
+        } finally {
+            in.close();
+        }
+    }
+
+    private List<FdbAddition> readAdditions(XmlPullParser parser) throws XmlPullParserException, IOException {
+        List<FdbAddition> entries = new ArrayList<FdbAddition>();
+
+        parser.require(XmlPullParser.START_TAG, ns, "additions");
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            if (name.equals("addition")) {
+                entries.add(readAddition(parser));
+            } else {
+                skip(parser);
+            }
+        }
         return entries;
     }
+
+    private FdbAddition readAddition(XmlPullParser parser) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, ns, "addition");
+        String title = null;
+        float xcoord = 0;
+        float ycoord = 0;
+        String imagename=null;
+
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            if (name.equals("name")) {
+                title = readByNoteName(parser, name);
+            } else if (name.equals("x")) {
+                xcoord = Float.parseFloat(readByNoteName(parser, name));
+            } else if (name.equals("y")) {
+                ycoord = Float.parseFloat(readByNoteName(parser, name));
+            } else if (name.equals("img")) {
+                imagename = readByNoteName(parser, name);
+            }
+            else {
+                skip(parser);
+            }
+        }
+        return new FdbAddition(title, xcoord, ycoord, imagename);
+    }
+
 }
 

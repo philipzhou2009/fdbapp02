@@ -106,22 +106,23 @@ public class PerfumeXmlParser {
 
         public View drawFlower(final Activity activity) {
             ImageView flower = new ImageView(activity);
-            flower.setImageResource(R.drawable.icon);
+            // make flower invisible
+            //flower.setImageResource(R.drawable.icon);
+            //flower.setVisibility(View.INVISIBLE);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(70, 70);
             flower.setLayoutParams(layoutParams);
 
             flower.setX(mRealX);
             flower.setY(mRealY);
 
+
             final Entry perfume = this;
             flower.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("fdb:PerfumeXmlParser", "flower.setOnClickListener");
+                    //Log.e("fdb:PerfumeXmlParser", "flower.setOnClickListener");
                     Intent myIntent;
                     myIntent = new Intent(v.getContext(), ScreenSlideActivity.class);
-
-                    //PerfumeXmlParser.Entry perfume = perfumes.get(position);
                     ArrayList<String> strList = new ArrayList();
 
                     strList.add(0, perfume.title);
@@ -134,12 +135,9 @@ public class PerfumeXmlParser {
                     strList.add(7, perfume.fontcolor);
                     strList.add(8, perfume.portrait);
                     strList.add(9, perfume.profile);
-                    //strList.add(10, perfume.cwx);
-                    //strList.add(11, perfume.cwy);
-                    //myIntent.putExtra("position", String.valueOf(position));
+
                     myIntent.putExtra("perfumedata", strList);
                     activity.startActivityForResult(myIntent, 0);
-
                 }
             });
 

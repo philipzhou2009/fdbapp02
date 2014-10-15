@@ -1,4 +1,21 @@
 <fdb>
+    <!-- NOIR -->
+    <perfume>
+        <title>OUD NOIR INTENSE</title>
+        <thumbnail>noir_100ml</thumbnail>
+        <themecolor>#c8000000</themecolor>
+        <perfumer>FRANCOIS MERLE-BAUDOIN</perfumer>
+        <topnotes>Bergamot, Cardamom</topnotes>
+        <middlenotes>Rose, Jasmin</middlenotes>
+        <basenotes>Sandalwood, Saffron, Patchouli, Vanilla, Musk, Amber</basenotes>
+        <fontcolor>#c8000000</fontcolor>
+        <portrait>perfumer8</portrait>
+        <profile>Born in Grasse, France, François is a fifth generation French perfumer – his grandfather created the world-renowned Anaïs Anaïs. He brings a wealth of experience from a career spanning more than 25 years, and has been a guiding light in his tenures at SARL Creative Scents andSARL Creations and Parfums.</profile>
+
+        <cwx>435</cwx>
+        <cwy>565</cwy>
+    </perfume>
+
     <!-- blue -->
     <perfume>
         <title>OUD BLUE INTENSE</title>
@@ -112,21 +129,6 @@
         <cwy>570</cwy>
     </perfume>
 
-    <!-- NOIR -->
-    <perfume>
-        <title>OUD NOIR INTENSE</title>
-        <thumbnail>noir_100ml</thumbnail>
-        <themecolor>#c8000000</themecolor>
-        <perfumer>FRANCOIS MERLE-BAUDOIN</perfumer>
-        <topnotes>Bergamot, Cardamom</topnotes>
-        <middlenotes>Rose, Jasmin</middlenotes>
-        <basenotes>Sandalwood, Saffron, Patchouli, Vanilla, Musk, Amber</basenotes>
-        <fontcolor>#c8000000</fontcolor>
-        <portrait>perfumer8</portrait>
-        <profile>Born in Grasse, France, François is a fifth generation French perfumer – his grandfather created the world-renowned Anaïs Anaïs. He brings a wealth of experience from a career spanning more than 25 years, and has been a guiding light in his tenures at SARL Creative Scents andSARL Creations and Parfums.</profile>
 
-        <cwx>435</cwx>
-        <cwy>565</cwy>
-    </perfume>
 
 </fdb>

@@ -15,4 +15,47 @@
         android:id="@+id/imageView2"
         android:layout_centerVertical="true" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/fcwtapcustomize"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Tap "
+            android:id="@+id/textView"
+            android:gravity="center"
+            android:textColor="#ff89723a"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="sans-serif" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/flower_customize"
+            android:src="@drawable/icon"
+            android:onClick="showcustomization" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=" To Customize"
+            android:id="@+id/textView2"
+            android:textColor="#ff89723a"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 </RelativeLayout>

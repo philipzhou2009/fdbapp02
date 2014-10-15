@@ -12,12 +12,12 @@ import android.widget.TextView;
  * Created by philip on 12/10/14.
  */
 public class FdbWheeler {
-    public String mName;
+    public String mName = "";
     public float mXcoord;
     public float mYcoord;
     public float mDegree;
-    TextView mTV;
-    boolean mFlag;
+    TextView mTV = null;
+    boolean mFlag = false;
     final float mLX = 800f;
     final float mLY = 150f;
 
@@ -28,6 +28,9 @@ public class FdbWheeler {
     float mRealY = 0;
 
     View mGridSelection;
+
+    public FdbWheeler() {
+    }
 
     public FdbWheeler(String name, float xcoord, float ycoord, float degree) {
         mName = name;
@@ -120,6 +123,7 @@ public class FdbWheeler {
         tv.setText(mName);
         tv.setTextColor(Color.WHITE);
         tv.setRotation(mDegree);
+        tv.setShadowLayer((float) 0.06, 5, 5, Color.BLACK);
 
         mRealX = mXcoord + mLX;
         mRealY = mYcoord + mLY;
@@ -130,5 +134,11 @@ public class FdbWheeler {
         mFlag = true;
 
         return tv;
+    }
+
+    public void hideTextView() {
+        if (mFlag == true && mTV != null) {
+            mTV.setVisibility(View.INVISIBLE);
+        }
     }
 }

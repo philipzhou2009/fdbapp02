@@ -41,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffffff" />
 
             <TextView
                 android:id="@+id/perfumerName"
@@ -49,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffffff" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -60,7 +62,8 @@
                 android:gravity="center"
                 android:text="All our fragrances contain 100% organic Oud oil from sustainable sources"
                 android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffffff" />
 
             <View
                 android:layout_width="160dp"
@@ -82,7 +85,8 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Top Notes"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:textColor="#ffffffff" />
 
             <TextView
                 android:id="@+id/topnotes"
@@ -90,7 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffffff" />
 
             <View
                 android:layout_width="2dp"
@@ -105,7 +110,8 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Middle Notes"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:textColor="#ffffffff" />
 
             <TextView
                 android:id="@+id/middlenotes"
@@ -113,7 +119,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffffff" />
 
             <View
                 android:layout_width="2dp"
@@ -128,7 +135,8 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Base Notes"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:textColor="#ffffffff" />
 
             <TextView
                 android:id="@+id/basenotes"
@@ -136,7 +144,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffffff" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -144,7 +153,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="100% pure organic vintage Oud"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffffff" />
 
             <View
                 android:layout_width="260dp"

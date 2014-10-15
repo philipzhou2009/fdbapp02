@@ -1,0 +1,83 @@
+<additions>
+    <addition>
+        <name>ORANGE</name>
+        <x>345</x>
+        <y>130</y>
+        <img>addition_orange</img>
+    </addition>
+    <addition>
+        <name>ORANGE</name>
+        <x>340</x>
+        <y>710</y>
+        <img>addition_orange</img>
+    </addition>
+
+    <addition>
+        <name>CEDARWOOD</name>
+        <x>280</x>
+        <y>220</y>
+        <img>addition_cedarwood</img>
+    </addition>
+    <addition>
+        <name>CEDARWOOD</name>
+        <x>40</x>
+        <y>470</y>
+        <img>addition_cedarwood</img>
+    </addition>
+
+    <addition>
+        <name>BASIL</name>
+        <x>500</x>
+        <y>200</y>
+        <img>addition_basil</img>
+    </addition>
+    <addition>
+        <name>BASIL</name>
+        <x>100</x>
+        <y>320</y>
+        <img>addition_basil</img>
+    </addition>
+
+
+    <addition>
+        <name>JASMINE</name>
+        <x>100</x>
+        <y>730</y>
+        <img>addition_jasmine</img>
+    </addition>
+
+    <addition>
+        <name>PATCHOULI</name>
+        <x>520</x>
+        <y>320</y>
+        <img>addition_patchouli</img>
+    </addition>
+
+    <addition>
+        <name>ROSE</name>
+        <x>700</x>
+        <y>460</y>
+        <img>addition_rose</img>
+    </addition>
+    <addition>
+        <name>ROSE</name>
+        <x>510</x>
+        <y>860</y>
+        <img>addition_rose</img>
+    </addition>
+
+    <addition>
+        <name>VANILLA</name>
+        <x>245</x>
+        <y>340</y>
+        <img>addition_vanilla</img>
+    </addition>
+
+    <addition>
+        <name>CALONE</name>
+        <x>560</x>
+        <y>740</y>
+        <img>addition_calone</img>
+    </addition>
+
+</additions>

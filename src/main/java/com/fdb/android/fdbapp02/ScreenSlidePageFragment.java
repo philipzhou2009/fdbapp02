@@ -48,9 +48,9 @@ public class ScreenSlidePageFragment extends Fragment {
     public static ArrayList<String> perfumedata;
 
     GlowingText glowText;
-    float 	startGlowRadius = 25f,
-            minGlowRadius   = 8f,
-            maxGlowRadius   = 20f;
+    float startGlowRadius = 25f,
+            minGlowRadius = 8f,
+            maxGlowRadius = 20f;
     Integer gGlowSpeed = 3,
             gGlowColor = 0xffac762a;
 
@@ -90,15 +90,12 @@ public class ScreenSlidePageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
 
         ViewGroup rootView;
-        if(mPageNumber == 0)
-        {
+        if (mPageNumber == 0) {
             rootView = (ViewGroup) inflater.inflate(R.layout.notes, container, false);
-        }
-        else
-        {
+        } else {
             rootView = (ViewGroup) inflater.inflate(R.layout.perfumer, container, false);
 
         }
@@ -115,8 +112,8 @@ public class ScreenSlidePageFragment extends Fragment {
         TextView perfumerNameView = (TextView) rootView.findViewById(R.id.perfumerName);
         perfumerNameView.setText("BY " + perfumerName);
 
-        if(mPageNumber==0)
-        {
+
+        if (mPageNumber == 0) {
             String topNotes = perfumedata.get(3);
             TextView topNotesView = (TextView) rootView.findViewById(R.id.topnotes);
             topNotesView.setText(topNotes);
@@ -129,10 +126,8 @@ public class ScreenSlidePageFragment extends Fragment {
             TextView baseNotesView = (TextView) rootView.findViewById(R.id.basenotes);
             baseNotesView.setText(baseNotes);
 
-            // Start Glowing :D
-
+            /*
             Activity activity = getActivity();
-
             glowText = new GlowingText(
                     activity,           // Pass activity Object
                     activity.getBaseContext(),   // Context
@@ -142,9 +137,10 @@ public class ScreenSlidePageFragment extends Fragment {
                     startGlowRadius,    // Start Glow Radius - Increases to MaxGlowRadius then decreases to MinGlowRadius.
                     Color.WHITE,         // Glow Color (int)
                     gGlowSpeed);                 // Glowing Transition Speed (Range of 1 to 10)
+                    */
 
-        }
-        else
+        } else
+
         {
             String perfumerPortrait = perfumedata.get(8);
             Integer portraitImageId = FdbHelper.getId(perfumerPortrait, R.drawable.class);

@@ -3,6 +3,8 @@ package com.fdb.android.fdbapp02;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,6 +30,7 @@ public class ColorWheel extends Activity {
     RelativeLayout mCWLayout;
     public ArrayList<String> mSelections;
     public List<PerfumeXmlParser.Entry> mPerfumes;
+    public List<FdbAddition> mAdditions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class ColorWheel extends Activity {
         try {
             mFdbWheelers = FdbHelper.loadPersonalityXml(this);
             mPerfumes = FdbHelper.loadPerfumeXml(this);
+            mAdditions = FdbHelper.loadAdditionsXml(this);
 
         } catch (IOException e) {
             Log.e("FCW", "io error");
@@ -97,27 +101,6 @@ public class ColorWheel extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private List<FdbHelper.Personality> loadPersonalityXml0() throws XmlPullParserException, IOException {
-        InputStream stream = null;
-        FdbHelper xmlParser = new FdbHelper();
-        List<FdbHelper.Personality> list = null;
-
-        AssetManager assetMgr = this.getAssets();
-
-        try {
-            stream = assetMgr.open("personalities.xml");
-            list = xmlParser.parse(stream);
-            // Makes sure that the InputStream is closed after the app is
-            // finished using it.
-        } finally {
-            if (stream != null) {
-                stream.close();
-            }
-        }
-
-        return list;
-    }
-
     public void drawFlower() {
         int iCount = 0;
         List<FdbWheeler> aEntries = new ArrayList<FdbWheeler>();
@@ -149,9 +132,80 @@ public class ColorWheel extends Activity {
 
             mCWLayout.addView(flower);
 
+            // find the related perfume
+            float fDistance = 0f, xcoord, ycoord, fTmp;
+            int iCursor = 0, iFlag=0;
+            for(PerfumeXmlParser.Entry perfume: mPerfumes)
+            {
+                xcoord = perfume.mRealX;
+                ycoord = perfume.mRealY;
+                fTmp = (fCentralX - xcoord) * (fCentralX - xcoord) + (fCentralY - ycoord) * (fCentralY - ycoord);
+                //Log.e("fdb", Float.toString(fTmp));
 
+                if(iCursor == 0 && fTmp <= 10000)
+                {
+                    iFlag = 0;
+                    break;
+                }
+                else if((fTmp <= fDistance || fDistance == 0f) && iCursor != 0)
+                {
+                    fDistance = fTmp;
+                    iFlag = iCursor;
+                }
+
+                iCursor++;
+
+            }
+            Log.e("fdb", Integer.toString(iFlag));
+
+            final PerfumeXmlParser.Entry perfume = mPerfumes.get(iFlag);
+
+            // set event
+            flower.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Log.e("fdb:PerfumeXmlParser", "flower.setOnClickListener");
+                    Intent myIntent;
+                    myIntent = new Intent(v.getContext(), ScreenSlideActivity.class);
+                    ArrayList<String> strList = new ArrayList();
+
+                    strList.add(0, perfume.title);
+                    strList.add(1, perfume.thumbnail);
+                    strList.add(2, perfume.themecolor);
+                    strList.add(3, perfume.topnotes);
+                    strList.add(4, perfume.middlenotes);
+                    strList.add(5, perfume.basenodes);
+                    strList.add(6, perfume.perfumer);
+                    strList.add(7, perfume.fontcolor);
+                    strList.add(8, perfume.portrait);
+                    strList.add(9, perfume.profile);
+
+                    myIntent.putExtra("perfumedata", strList);
+                    startActivityForResult(myIntent, 0);
+                }
+            });
 
         }
+    }
+    
+    public void showcustomization(View view) {
+        //Log.e("fcw", "showcustomization");
 
+        View flower_customize = findViewById(R.id.flower_customize);
+        flower_customize.setOnClickListener(null);
+
+        for (FdbWheeler wheeler: mFdbWheelers)
+        {
+            wheeler.hideTextView();
+        }
+
+        for(FdbAddition addition: mAdditions)
+        {
+            String name = addition.mName;
+            Log.e("fcw", name);
+
+            TextView tv = addition.createTextView(this);
+            mCWLayout.addView(tv);
+        }
     }
 }
