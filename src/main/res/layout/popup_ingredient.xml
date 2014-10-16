@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+    <!-- android-er.blogspot.sg/2014/01/creat-background-of-popup-window-with.html  -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/customborder"
+    android:orientation="vertical"
+    android:id="@+id/popup_ingredient">
 
-    <ImageView
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:id="@+id/popup_image"
-        android:layout_gravity="center_horizontal" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/popup_name"
-        android:layout_gravity="center_horizontal"
-        android:textSize="24sp" />
+            <ImageView
+                android:layout_width="500dp"
+                android:layout_height="500dp"
+                android:id="@+id/popup_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/popup_name"
+                android:textColor="#ff000000"
+                android:textSize="26sp"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
+
+
 </LinearLayout>

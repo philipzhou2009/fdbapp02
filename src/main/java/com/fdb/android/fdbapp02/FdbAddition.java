@@ -52,7 +52,7 @@ public class FdbAddition extends FdbWheeler {
 
                 LayoutInflater layoutInflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View popupView = layoutInflater.inflate(R.layout.popup_ingredient, null);
-                final PopupWindow popupWindow = new PopupWindow(popupView, 500, 500);
+                final PopupWindow popupWindow = new PopupWindow(popupView, 1200, 1200);
 
                 ImageView imageView = (ImageView)popupView.findViewById(R.id.popup_image);
                 imageView.setImageResource(mImageResId);
