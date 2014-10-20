@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
@@ -22,24 +22,27 @@
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="com.fdb.android.fdbapp02.IntroActivity" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".SelectionsActivity"
-            android:label="@string/title_activity_selections" >
+            android:label="@string/title_activity_selections"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         </activity>
 
         <activity
             android:name=".ColorWheel"
-            android:label="@string/colorwheel">
+            android:label="@string/colorwheel"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape">
         </activity>
 
         <activity
             android:name=".ScreenSlideActivity"
             android:label="@string/title_notes"
-            android:uiOptions="splitActionBarWhenNarrow" >
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         </activity>
     </application>
 

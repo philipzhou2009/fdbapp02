@@ -109,7 +109,7 @@ public class PerfumeXmlParser {
             // make flower invisible
             //flower.setImageResource(R.drawable.icon);
             //flower.setVisibility(View.INVISIBLE);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(70, 70);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(80, 80);
             flower.setLayoutParams(layoutParams);
 
             flower.setX(mRealX);

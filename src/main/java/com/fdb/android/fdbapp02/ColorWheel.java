@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +34,8 @@ public class ColorWheel extends Activity {
     public ArrayList<String> mSelections;
     public List<PerfumeXmlParser.Entry> mPerfumes;
     public List<FdbAddition> mAdditions;
+
+    public PopupWindow mPW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,19 +59,22 @@ public class ColorWheel extends Activity {
         RelativeLayout colorWheelLayout = (RelativeLayout) findViewById(R.id.colorWheelLayout);
         mCWLayout = colorWheelLayout;
 
-        for(String select: mSelections)
-        {
+        for (String select : mSelections) {
             Log.e("fdb:ColorWheel:select", select);
         }
 
         for (FdbWheeler wheeler : mFdbWheelers) {
-            for(String select: mSelections)
-            {
-                if(wheeler.mName.equals(select) )
-                {
-                    //Log.e("fdb:ColorWheel", wheeler.mName);
-                    TextView tv = wheeler.createTextView(this);
-                    colorWheelLayout.addView(tv);
+
+            if(false) {
+                TextView tv = wheeler.createTextView(this);
+                colorWheelLayout.addView(tv);
+            }
+            else {
+                for (String select : mSelections) {
+                    if (wheeler.mName.equals(select)) {
+                        TextView tv = wheeler.createTextView(this);
+                        colorWheelLayout.addView(tv);
+                    }
                 }
             }
         }
@@ -74,8 +82,7 @@ public class ColorWheel extends Activity {
         this.drawFlower();
 
         // for test, draw flower for each perfume
-        for (PerfumeXmlParser.Entry perfume: mPerfumes)
-        {
+        for (PerfumeXmlParser.Entry perfume : mPerfumes) {
             View view = perfume.drawFlower(this);
             colorWheelLayout.addView(view);
         }
@@ -106,21 +113,19 @@ public class ColorWheel extends Activity {
         List<FdbWheeler> aEntries = new ArrayList<FdbWheeler>();
 
         for (FdbWheeler wheeler : mFdbWheelers) {
-            if(wheeler.mFlag == true)
-            {
+            if (wheeler.mFlag == true) {
                 aEntries.add(wheeler);
                 iCount++;
             }
         }
 
-        if(iCount == 3)
-        {// time to flower
+        if (iCount == 3) {// time to flower
             FdbWheeler wheeler1 = aEntries.get(0);
             FdbWheeler wheeler2 = aEntries.get(1);
             FdbWheeler wheeler3 = aEntries.get(2);
 
-            float fCentralX = (wheeler1.mRealX + wheeler2.mRealX + wheeler3.mRealX)/3;
-            float fCentralY = (wheeler1.mRealY + wheeler2.mRealY + wheeler3.mRealY)/3;
+            float fCentralX = (wheeler1.mRealX + wheeler2.mRealX + wheeler3.mRealX) / 3;
+            float fCentralY = (wheeler1.mRealY + wheeler2.mRealY + wheeler3.mRealY) / 3;
 
             ImageView flower = new ImageView(this);
             flower.setImageResource(R.drawable.icon);
@@ -134,21 +139,17 @@ public class ColorWheel extends Activity {
 
             // find the related perfume
             float fDistance = 0f, xcoord, ycoord, fTmp;
-            int iCursor = 0, iFlag=0;
-            for(PerfumeXmlParser.Entry perfume: mPerfumes)
-            {
+            int iCursor = 0, iFlag = 0;
+            for (PerfumeXmlParser.Entry perfume : mPerfumes) {
                 xcoord = perfume.mRealX;
                 ycoord = perfume.mRealY;
                 fTmp = (fCentralX - xcoord) * (fCentralX - xcoord) + (fCentralY - ycoord) * (fCentralY - ycoord);
                 //Log.e("fdb", Float.toString(fTmp));
 
-                if(iCursor == 0 && fTmp <= 10000)
-                {
+                if (iCursor == 0 && fTmp <= 10000) {
                     iFlag = 0;
                     break;
-                }
-                else if((fTmp <= fDistance || fDistance == 0f) && iCursor != 0)
-                {
+                } else if ((fTmp <= fDistance || fDistance == 0f) && iCursor != 0) {
                     fDistance = fTmp;
                     iFlag = iCursor;
                 }
@@ -156,7 +157,7 @@ public class ColorWheel extends Activity {
                 iCursor++;
 
             }
-            Log.e("fdb", Integer.toString(iFlag));
+            //Log.e("fdb", Integer.toString(iFlag));
 
             final PerfumeXmlParser.Entry perfume = mPerfumes.get(iFlag);
 
@@ -187,25 +188,35 @@ public class ColorWheel extends Activity {
 
         }
     }
-    
+
     public void showcustomization(View view) {
         //Log.e("fcw", "showcustomization");
 
         View flower_customize = findViewById(R.id.flower_customize);
         flower_customize.setOnClickListener(null);
 
-        for (FdbWheeler wheeler: mFdbWheelers)
-        {
+        for (FdbWheeler wheeler : mFdbWheelers) {
             wheeler.hideTextView();
         }
 
-        for(FdbAddition addition: mAdditions)
-        {
+        for (FdbAddition addition : mAdditions) {
             String name = addition.mName;
             Log.e("fcw", name);
 
             TextView tv = addition.createTextView(this);
             mCWLayout.addView(tv);
         }
+    }
+
+    // http://stackoverflow.com/questions/5645081/android-touch-event-on-screen
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //Log.e("fcw", "onTouchEvent");
+        if (mPW != null) {
+            mPW.dismiss();
+            FrameLayout layout_MainMenu = (FrameLayout) findViewById(R.id.fcwdimlayer);
+            layout_MainMenu.setAlpha(0.0f);
+        }
+        return super.onTouchEvent(event);
     }
 }

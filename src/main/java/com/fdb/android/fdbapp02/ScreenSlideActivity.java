@@ -77,12 +77,14 @@ public class ScreenSlideActivity extends FragmentActivity {
                 // on which page is currently active. An alternative approach is to have each
                 // fragment expose actions itself (rather than the activity exposing actions),
                 // but for simplicity, the activity provides the actions in this sample.
+                /*
                 invalidateOptionsMenu();
 
                 ActionBar actionBar = getActionBar();
 
                 Integer resId = (position==1) ? R.string.title_perfumer : R.string.title_notes;
                 actionBar.setTitle(resId);
+                */
             }
         });
 

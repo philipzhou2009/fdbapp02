@@ -1,13 +1,16 @@
 package com.fdb.android.fdbapp02;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -48,8 +51,6 @@ public class FdbAddition extends FdbWheeler {
             @Override
             public void onClick(View v) {
 
-                Log.e("fcw", "PopupWindow");
-
                 LayoutInflater layoutInflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View popupView = layoutInflater.inflate(R.layout.popup_ingredient, null);
                 final PopupWindow popupWindow = new PopupWindow(popupView, 1200, 1200);
@@ -61,6 +62,13 @@ public class FdbAddition extends FdbWheeler {
                 textView.setText(mName);
 
                 popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
+
+                ColorWheel aCW = (ColorWheel) activity;
+                aCW.mPW = popupWindow;
+
+                Log.e("fcw", "PopupWindow setAlpha");
+                FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById( R.id.fcwdimlayer);
+                layout_MainMenu.setAlpha(0.8f);
 
             }
         });

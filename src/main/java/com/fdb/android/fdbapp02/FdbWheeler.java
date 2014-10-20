@@ -18,8 +18,10 @@ public class FdbWheeler {
     public float mDegree;
     TextView mTV = null;
     boolean mFlag = false;
-    final float mLX = 800f;
-    final float mLY = 150f;
+    final float mLX = 740f;
+    final float mLY = 225f;
+    //final float mMultiplierX = 1.1f;
+    //final float mMultiplierY =
 
     final float mPX = 300f;
     final float mPY = 200f;

@@ -15,6 +15,15 @@
         android:id="@+id/imageView2"
         android:layout_centerVertical="true" />
 
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/fcwdimlayer"
+        android:foreground="#000000"
+        android:alpha="0">
+
+    </FrameLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -58,4 +67,5 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
 </RelativeLayout>

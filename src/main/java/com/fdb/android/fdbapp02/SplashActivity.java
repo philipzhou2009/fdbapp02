@@ -17,7 +17,7 @@ public class SplashActivity extends Activity {
             public void run(){
                 try{
                     int logoTimer = 0;
-                    while(logoTimer < 800){
+                    while(logoTimer < 1000){
                         sleep(100);
                         logoTimer = logoTimer +100;
                     };
