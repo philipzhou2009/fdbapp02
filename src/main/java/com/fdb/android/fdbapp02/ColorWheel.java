@@ -23,17 +23,17 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class ColorWheel extends Activity {
 
-    //public List<fdbHelper.Personality> mPersonalities;
-    public List<FdbWheeler> mFdbWheelers;
     RelativeLayout mCWLayout;
     public ArrayList<String> mSelections;
     public List<PerfumeXmlParser.Entry> mPerfumes;
     public List<FdbAddition> mAdditions;
+    public List<FdbWheeler> mFdbWheelers;
 
     public PopupWindow mPW;
 
@@ -194,6 +194,10 @@ public class ColorWheel extends Activity {
 
         View flower_customize = findViewById(R.id.flower_customize);
         flower_customize.setOnClickListener(null);
+
+        View tapCustomize = findViewById(R.id.fcwtapcustomize);
+        tapCustomize.setVisibility(View.INVISIBLE);
+
 
         for (FdbWheeler wheeler : mFdbWheelers) {
             wheeler.hideTextView();

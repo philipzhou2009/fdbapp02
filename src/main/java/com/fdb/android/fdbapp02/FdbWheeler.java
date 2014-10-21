@@ -11,7 +11,7 @@ import android.widget.TextView;
 /**
  * Created by philip on 12/10/14.
  */
-public class FdbWheeler {
+public class FdbWheeler implements Comparable<FdbWheeler>{
     public String mName = "";
     public float mXcoord;
     public float mYcoord;
@@ -20,11 +20,6 @@ public class FdbWheeler {
     boolean mFlag = false;
     final float mLX = 740f;
     final float mLY = 225f;
-    //final float mMultiplierX = 1.1f;
-    //final float mMultiplierY =
-
-    final float mPX = 300f;
-    final float mPY = 200f;
 
     float mRealX = 0;
     float mRealY = 0;
@@ -105,7 +100,7 @@ public class FdbWheeler {
                 if (wheeler.mFlag == false) {
                     tv.setTextSize(26);
                     tv.setTypeface(Typeface.DEFAULT_BOLD);
-                    tv.setShadowLayer((float) 0.06, 3, 5, Color.GRAY);
+                    tv.setShadowLayer((float) 0.06, 3, 3, Color.GRAY);
                     wheeler.mFlag = true;
                 } else {
                     tv.setTextSize(22);
@@ -142,5 +137,9 @@ public class FdbWheeler {
         if (mFlag == true && mTV != null) {
             mTV.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public int compareTo(FdbWheeler other){
+        return mName.compareTo(other.mName);
     }
 }

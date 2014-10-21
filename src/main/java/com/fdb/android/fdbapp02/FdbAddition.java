@@ -33,6 +33,7 @@ public class FdbAddition extends FdbWheeler {
     public TextView createTextView(final Activity activity) {
         TextView tv = new TextView(activity);
         tv.setText(mName);
+        tv.setTextSize(16f);
         tv.setTextColor(Color.WHITE);
         tv.setRotation(mDegree);
         tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);

@@ -87,7 +87,6 @@ public class ImageAdapter extends BaseAdapter {
                 title = "Color Wheel";
                 Integer resId = FdbHelper.getId("colour_wheel_draft_rev_white_640", R.drawable.class);
                 //thumbId = resId;
-
             }
 
             textView.setText(title);

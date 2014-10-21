@@ -16,6 +16,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -43,6 +44,8 @@ public class SelectionsActivity extends Activity {
             //return getResources().getString(R.string.xml_error);
             Log.e("FDB", "XmlPullParserException error");
         }
+
+        Collections.sort(mFdbWheelers);
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this, mFdbWheelers));
