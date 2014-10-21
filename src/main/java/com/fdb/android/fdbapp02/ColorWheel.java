@@ -36,6 +36,7 @@ public class ColorWheel extends Activity {
     public List<FdbWheeler> mFdbWheelers;
 
     public PopupWindow mPW;
+    public ImageView mFlower;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +64,8 @@ public class ColorWheel extends Activity {
             Log.e("fdb:ColorWheel:select", select);
         }
 
+        ArrayList<float[]> coordsList = new ArrayList<float[]>();
         for (FdbWheeler wheeler : mFdbWheelers) {
-
             if(false) {
                 TextView tv = wheeler.createTextView(this);
                 colorWheelLayout.addView(tv);
@@ -72,12 +73,21 @@ public class ColorWheel extends Activity {
             else {
                 for (String select : mSelections) {
                     if (wheeler.mName.equals(select)) {
+
                         TextView tv = wheeler.createTextView(this);
-                        colorWheelLayout.addView(tv);
+                        // no show texts
+                        //colorWheelLayout.addView(tv);
+
+                        float coordsXY[] = { wheeler.mRealX, wheeler.mRealY };
+                        coordsList.add(coordsXY);
                     }
                 }
             }
         }
+
+        // draw triangle
+        FdbWheelTriangle triangle = new FdbWheelTriangle(this, coordsList);
+        colorWheelLayout.addView(triangle);
 
         this.drawFlower();
 
@@ -124,12 +134,14 @@ public class ColorWheel extends Activity {
             FdbWheeler wheeler2 = aEntries.get(1);
             FdbWheeler wheeler3 = aEntries.get(2);
 
-            float fCentralX = (wheeler1.mRealX + wheeler2.mRealX + wheeler3.mRealX) / 3;
-            float fCentralY = (wheeler1.mRealY + wheeler2.mRealY + wheeler3.mRealY) / 3;
+            int flowerWidth = 50;
+
+            float fCentralX = (wheeler1.mRealX + wheeler2.mRealX + wheeler3.mRealX) / 3 - flowerWidth/2;
+            float fCentralY = (wheeler1.mRealY + wheeler2.mRealY + wheeler3.mRealY) / 3 - flowerWidth/2;
 
             ImageView flower = new ImageView(this);
             flower.setImageResource(R.drawable.icon);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(50, 50);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(flowerWidth, flowerWidth);
             flower.setLayoutParams(layoutParams);
 
             flower.setX(fCentralX);

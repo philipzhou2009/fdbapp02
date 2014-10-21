@@ -320,5 +320,6 @@ public class FdbHelper {
         return new FdbAddition(title, xcoord, ycoord, imagename);
     }
 
+
 }
 
