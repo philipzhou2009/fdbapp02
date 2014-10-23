@@ -93,10 +93,11 @@ public class FdbWheeler implements Comparable<FdbWheeler>{
         mGridSelection = grid;
 
         final FdbWheeler wheeler = this;
-        textView.setOnClickListener(new View.OnClickListener() {
+        grid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView tv = (TextView) v;
+                //TextView tv = (TextView) v;
+                TextView tv = (TextView) v.findViewById(R.id.grid_text);
                 if (wheeler.mFlag == false) {
                     tv.setTextSize(26);
                     tv.setTypeface(Typeface.DEFAULT_BOLD);

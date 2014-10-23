@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -66,11 +68,10 @@ public class ColorWheel extends Activity {
 
         ArrayList<float[]> coordsList = new ArrayList<float[]>();
         for (FdbWheeler wheeler : mFdbWheelers) {
-            if(false) {
+            if (false) {
                 TextView tv = wheeler.createTextView(this);
                 colorWheelLayout.addView(tv);
-            }
-            else {
+            } else {
                 for (String select : mSelections) {
                     if (wheeler.mName.equals(select)) {
 
@@ -78,7 +79,7 @@ public class ColorWheel extends Activity {
                         // no show texts
                         //colorWheelLayout.addView(tv);
 
-                        float coordsXY[] = { wheeler.mRealX, wheeler.mRealY };
+                        float coordsXY[] = {wheeler.mRealX, wheeler.mRealY};
                         coordsList.add(coordsXY);
                     }
                 }
@@ -90,6 +91,7 @@ public class ColorWheel extends Activity {
         colorWheelLayout.addView(triangle);
 
         this.drawFlower();
+        this.drawBloomingAnim(coordsList);
 
         // for test, draw flower for each perfume
         for (PerfumeXmlParser.Entry perfume : mPerfumes) {
@@ -136,8 +138,8 @@ public class ColorWheel extends Activity {
 
             int flowerWidth = 50;
 
-            float fCentralX = (wheeler1.mRealX + wheeler2.mRealX + wheeler3.mRealX) / 3 - flowerWidth/2;
-            float fCentralY = (wheeler1.mRealY + wheeler2.mRealY + wheeler3.mRealY) / 3 - flowerWidth/2;
+            float fCentralX = (wheeler1.mRealX + wheeler2.mRealX + wheeler3.mRealX) / 3 - flowerWidth / 2;
+            float fCentralY = (wheeler1.mRealY + wheeler2.mRealY + wheeler3.mRealY) / 3 - flowerWidth / 2;
 
             ImageView flower = new ImageView(this);
             flower.setImageResource(R.drawable.icon);
@@ -199,6 +201,85 @@ public class ColorWheel extends Activity {
             });
 
         }
+
+    }
+
+    public void drawBloomingAnim(ArrayList<float[]> coordsList) {
+
+        int flowerWidth = 25;
+        int fWidthHalf = flowerWidth/2;
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(flowerWidth, flowerWidth);
+        final ImageView flower = new ImageView(this);
+        flower.setImageResource(R.drawable.icon);
+        flower.setLayoutParams(layoutParams);
+        mCWLayout.addView(flower);
+
+        float[] coords0 = coordsList.get(0);
+        float[] coords1 = coordsList.get(1);
+        float[] coords2 = coordsList.get(2);
+
+        ArrayList<TranslateAnimation> animations = new ArrayList<TranslateAnimation>();
+        final TranslateAnimation animation0 = new TranslateAnimation(coords0[0]-fWidthHalf, coords1[0]-fWidthHalf, coords0[1]-fWidthHalf, coords1[1]-fWidthHalf);
+        final TranslateAnimation animation1 = new TranslateAnimation(coords1[0]-fWidthHalf, coords2[0]-fWidthHalf, coords1[1]-fWidthHalf, coords2[1]-fWidthHalf);
+        final TranslateAnimation animation2 = new TranslateAnimation(coords2[0]-fWidthHalf, coords0[0]-fWidthHalf, coords2[1]-fWidthHalf, coords0[1]-fWidthHalf);
+
+        animations.add(animation0);
+        animations.add(animation1);
+        animations.add(animation2);
+
+        for (TranslateAnimation animation : animations) {
+            animation.setDuration(5000);
+            //animation.setRepeatCount(-1);
+            //animation.setRepeatMode(2);
+            animation.setFillAfter(true);
+        }
+
+        animation0.setAnimationListener(new Animation.AnimationListener(){
+            @Override
+            public void onAnimationStart(Animation arg0) {
+            }
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+            }
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                //Log.e("fcw", "animation0 onAnimationEnd");
+                flower.startAnimation(animation1);
+
+            }
+        });
+
+        animation1.setAnimationListener(new Animation.AnimationListener(){
+            @Override
+            public void onAnimationStart(Animation arg0) {
+            }
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+            }
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                //Log.e("fcw", "animation1 onAnimationEnd");
+                flower.startAnimation(animation2);
+
+            }
+        });
+
+        animation2.setAnimationListener(new Animation.AnimationListener(){
+            @Override
+            public void onAnimationStart(Animation arg0) {
+            }
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+            }
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                //Log.e("fcw", "animation2 onAnimationEnd");
+                flower.startAnimation(animation0);
+            }
+        });
+
+        flower.startAnimation(animation0);
     }
 
     public void showcustomization(View view) {

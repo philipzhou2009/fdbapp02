@@ -25,7 +25,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -35,17 +35,6 @@
         android:id="@+id/fcwtapcustomize"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Tap "
-            android:id="@+id/textView"
-            android:gravity="center"
-            android:textColor="#ff89723a"
-            android:textSize="24sp"
-            android:layout_gravity="center_vertical" />
 
         <ImageView
             android:layout_width="60dp"
@@ -58,10 +47,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text=" To Customize"
+            android:text="Customize"
             android:id="@+id/textView2"
             android:textColor="#ff89723a"
-            android:textSize="24sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 

@@ -31,4 +31,34 @@ public final class FontsOverride {
             e.printStackTrace();
         }
     }
+
+    protected static void setAllDefaultFonts(Context context) {
+        try {
+            final Typeface bold = Typeface.createFromAsset(context.getAssets(),
+                    "fonts/Adobe Garamond Bold.ttf");
+            final Typeface italic = Typeface.createFromAsset(context.getAssets(),
+                    "fonts/Adobe Garamond Italic.ttf");
+            final Typeface boldItalic = Typeface.createFromAsset(context.getAssets(),
+                    "fonts/Adobe Garamond Italic.ttf");
+            final Typeface regular = Typeface.createFromAsset(context.getAssets(),
+                    "fonts/Adobe Garamond Regular.ttf");
+
+            Field DEFAULT = Typeface.class.getDeclaredField("DEFAULT");
+            DEFAULT.setAccessible(true);
+            DEFAULT.set(null, regular);
+
+            Field DEFAULT_BOLD = Typeface.class
+                    .getDeclaredField("DEFAULT_BOLD");
+            DEFAULT_BOLD.setAccessible(true);
+            DEFAULT_BOLD.set(null, bold);
+
+            Field sDefaults = Typeface.class.getDeclaredField("sDefaults");
+            sDefaults.setAccessible(true);
+            sDefaults.set(null, new Typeface[] { regular, bold, italic,
+                    boldItalic });
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
 }

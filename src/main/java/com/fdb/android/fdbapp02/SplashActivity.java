@@ -14,8 +14,9 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/Adobe Garamond Regular.ttf");
-        FontsOverride.setDefaultFont(this, "DEFAULT_BOLD", "fonts/Adobe Garamond Bold.ttf");
+        //FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/Adobe Garamond Regular.ttf");
+        //FontsOverride.setDefaultFont(this, "DEFAULT_BOLD", "fonts/Adobe Garamond Bold.ttf");
+        FontsOverride.setAllDefaultFonts(this);
 
         Thread logoTimer = new Thread() {
             public void run(){

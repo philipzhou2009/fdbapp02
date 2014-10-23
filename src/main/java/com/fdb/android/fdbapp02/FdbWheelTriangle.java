@@ -9,7 +9,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,6 +23,7 @@ public class FdbWheelTriangle extends View {
     Paint paint = new Paint();
 
     ArrayList<float[]> mCoordsList;
+    Context mContext;
 
     public FdbWheelTriangle(Context context, ArrayList<float[]> coordsList) {
         super(context);
@@ -25,6 +31,7 @@ public class FdbWheelTriangle extends View {
         paint.setStrokeWidth(4);
 
         mCoordsList = coordsList;
+        mContext = context;
     }
 
     @Override
@@ -44,9 +51,7 @@ public class FdbWheelTriangle extends View {
         Path path = new Path();
         path.moveTo(coords0[0], coords0[1]);
         path.lineTo(coords1[0], coords1[1]);
-        //path.moveTo(coords1[0], coords1[1]);
         path.lineTo(coords2[0], coords2[1]);
-        //path.moveTo(coords2[0], coords2[1]);
         path.lineTo(coords0[0], coords0[1]);
         path.close();
 
@@ -54,5 +59,4 @@ public class FdbWheelTriangle extends View {
         paint.setAntiAlias(true);
         canvas.drawPath(path, paint);
     }
-
 }
