@@ -80,4 +80,75 @@
         <img>addition_calone</img>
     </addition>
 
+    <!-- notes -->
+    <addition>
+        <name>White Flowers</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_whiteflower</img>
+    </addition>
+
+    <addition>
+        <name>Monoi</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_monoi</img>
+    </addition>
+
+    <addition>
+        <name>Tonka Bean</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_tonkabean</img>
+    </addition>
+
+    <addition>
+        <name>Ginger</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_ginger</img>
+    </addition>
+
+    <addition>
+        <name>Pineapple</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_pineapple</img>
+    </addition>
+
+    <addition>
+        <name>Lemon</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_lemon</img>
+    </addition>
+
+    <addition>
+        <name>Musk</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_musk</img>
+    </addition>
+
+    <addition>
+        <name>Mandarin</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_mandarin</img>
+    </addition>
+
+    <addition>
+        <name>Neroli</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_neroli</img>
+    </addition>
+
+    <addition>
+        <name>Styrax</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_styrax</img>
+    </addition>
+
 </additions>

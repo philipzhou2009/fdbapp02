@@ -115,6 +115,44 @@ public class PerfumeXmlParser {
             flower.setX(mRealX);
             flower.setY(mRealY);
 
+            final Entry perfume = this;
+            flower.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Log.e("fdb:PerfumeXmlParser", "flower.setOnClickListener");
+                    Intent myIntent;
+                    myIntent = new Intent(v.getContext(), ScreenSlideActivity.class);
+                    ArrayList<String> strList = new ArrayList();
+
+                    strList.add(0, perfume.title);
+                    strList.add(1, perfume.thumbnail);
+                    strList.add(2, perfume.themecolor);
+                    strList.add(3, perfume.topnotes);
+                    strList.add(4, perfume.middlenotes);
+                    strList.add(5, perfume.basenodes);
+                    strList.add(6, perfume.perfumer);
+                    strList.add(7, perfume.fontcolor);
+                    strList.add(8, perfume.portrait);
+                    strList.add(9, perfume.profile);
+
+                    myIntent.putExtra("perfumedata", strList);
+                    activity.startActivityForResult(myIntent, 0);
+                }
+            });
+
+            return flower;
+        }
+
+        public View drawPerfume(final Activity activity, List<FdbAddition> notes) {
+            ImageView flower = new ImageView(activity);
+            // make flower invisible
+            //flower.setImageResource(R.drawable.icon);
+            //flower.setVisibility(View.INVISIBLE);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(80, 80);
+            flower.setLayoutParams(layoutParams);
+
+            flower.setX(mRealX);
+            flower.setY(mRealY);
 
             final Entry perfume = this;
             flower.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +182,7 @@ public class PerfumeXmlParser {
             return flower;
         }
     }
+
 
     // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them
     // off

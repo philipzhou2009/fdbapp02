@@ -139,9 +139,7 @@ public class ScreenSlidePageFragment extends Fragment {
                     gGlowSpeed);                 // Glowing Transition Speed (Range of 1 to 10)
                     */
 
-        } else
-
-        {
+        } else {
             String perfumerPortrait = perfumedata.get(8);
             Integer portraitImageId = FdbHelper.getId(perfumerPortrait, R.drawable.class);
 

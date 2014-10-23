@@ -95,7 +95,8 @@ public class ColorWheel extends Activity {
 
         // for test, draw flower for each perfume
         for (PerfumeXmlParser.Entry perfume : mPerfumes) {
-            View view = perfume.drawFlower(this);
+            //View view = perfume.drawFlower(this);
+            View view = perfume.drawPerfume(this, mAdditions);
             colorWheelLayout.addView(view);
         }
 
@@ -297,11 +298,15 @@ public class ColorWheel extends Activity {
         }
 
         for (FdbAddition addition : mAdditions) {
-            String name = addition.mName;
-            Log.e("fcw", name);
 
-            TextView tv = addition.createTextView(this);
-            mCWLayout.addView(tv);
+            if(addition.mXcoord != 0) {
+                // only x,y != 0, it's additional;
+
+                String name = addition.mName;
+                Log.e("fcw", name);
+                TextView tv = addition.createTextView(this);
+                mCWLayout.addView(tv);
+            }
         }
     }
 

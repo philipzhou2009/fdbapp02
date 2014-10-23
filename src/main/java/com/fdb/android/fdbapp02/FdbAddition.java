@@ -6,6 +6,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,10 +20,20 @@ import android.widget.TextView;
 /**
  * Created by philip on 10/15/14.
  */
-public class FdbAddition extends FdbWheeler {
+public class FdbAddition extends FdbWheeler implements Parcelable {
 
     public String mImageName;
     public int mImageResId;
+
+    // for implementation of Parcelable
+    private int mData;
+    public int describeContents() {
+        return 0;
+    }
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeInt(mData);
+    }
+    // end of implementation of Parcelable
 
     public FdbAddition(String name, float xcoord, float ycoord, String imagename) {
         super(name, xcoord, ycoord, 0);
@@ -31,6 +43,8 @@ public class FdbAddition extends FdbWheeler {
     }
 
     public TextView createTextView(final Activity activity) {
+
+
         TextView tv = new TextView(activity);
         tv.setText(mName);
         tv.setTextSize(16f);
