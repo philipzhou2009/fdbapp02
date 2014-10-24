@@ -88,14 +88,13 @@
                 android:textStyle="italic"
                 android:textColor="#ffffffff" />
 
-            <TextView
-                android:id="@+id/topnotes"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffffff" />
+                android:id="@+id/notesLayout0">
+
+            </LinearLayout>
 
             <View
                 android:layout_width="2dp"
@@ -113,14 +112,11 @@
                 android:textStyle="italic"
                 android:textColor="#ffffffff" />
 
-            <TextView
-                android:id="@+id/middlenotes"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffffff" />
+                android:id="@+id/notesLayout1"></LinearLayout>
 
             <View
                 android:layout_width="2dp"
@@ -138,14 +134,11 @@
                 android:textStyle="italic"
                 android:textColor="#ffffffff" />
 
-            <TextView
-                android:id="@+id/basenotes"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffffff" />
+                android:id="@+id/notesLayout2"></LinearLayout>
 
             <TextView
                 android:id="@+id/textView2"

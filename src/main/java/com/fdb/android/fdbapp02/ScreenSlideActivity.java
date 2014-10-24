@@ -26,6 +26,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -60,6 +61,7 @@ public class ScreenSlideActivity extends FragmentActivity {
     private PagerAdapter mPagerAdapter;
 
     public ArrayList<String> perfumedata;
+    public ArrayList<FdbAddition> mNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,11 @@ public class ScreenSlideActivity extends FragmentActivity {
         perfumedata = intent.getStringArrayListExtra("perfumedata");
         //System.out.println("Contents of perfume data: " + perfumedata);
 
+        mNotes = intent.getParcelableArrayListExtra("notesdata");
+        for (FdbAddition noteObj: mNotes)
+        {
+            Log.e("ScreenSlideActivity, noteObj.mName=", "|" + noteObj.mName + "|");
+        }
     }
 
     @Override
@@ -151,7 +158,8 @@ public class ScreenSlideActivity extends FragmentActivity {
         public Fragment getItem(int position) {
 
             //return ScreenSlidePageFragment.create(position);
-            return ScreenSlidePageFragment.create(position, perfumedata);
+            //return ScreenSlidePageFragment.create(position, perfumedata);
+            return ScreenSlidePageFragment.create(position, perfumedata, mNotes);
         }
 
         @Override

@@ -93,11 +93,16 @@ public class ColorWheel extends Activity {
         this.drawFlower();
         this.drawBloomingAnim(coordsList);
 
-        // for test, draw flower for each perfume
+        // draw invisible squares
         for (PerfumeXmlParser.Entry perfume : mPerfumes) {
             //View view = perfume.drawFlower(this);
             View view = perfume.drawPerfume(this, mAdditions);
             colorWheelLayout.addView(view);
+        }
+
+        for (FdbAddition noteObj: mAdditions)
+        {
+           // Log.e("fcw, noteObj.mName=", "|"+ noteObj.mName + "|");
         }
 
     }

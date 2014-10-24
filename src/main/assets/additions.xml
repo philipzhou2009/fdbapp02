@@ -151,4 +151,129 @@
         <img>notes_styrax</img>
     </addition>
 
+    <addition>
+        <name>Coriander Seeds</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_corianderseed</img>
+    </addition>
+
+    <addition>
+        <name>Cistus</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_cistus</img>
+    </addition>
+
+    <addition>
+        <name>Bergamot</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_bergamot</img>
+    </addition>
+
+    <addition>
+        <name>Amber</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_amber</img>
+    </addition>
+
+    <addition>
+        <name>Frankincense</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_frankincense</img>
+    </addition>
+
+    <addition>
+        <name>Benzoin</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_benzoin</img>
+    </addition>
+
+    <addition>
+        <name>Black Pepper</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_pepper</img>
+    </addition>
+
+    <addition>
+        <name>Cardamom</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_cardamom</img>
+    </addition>
+
+    <addition>
+        <name>Sandalwood</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_sandalwood</img>
+    </addition>
+
+    <addition>
+        <name>Elemi</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_elemi</img>
+    </addition>
+
+    <addition>
+        <name>Saffron</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_saffron</img>
+    </addition>
+
+    <addition>
+        <name>Nutmeg</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_nutmeg</img>
+    </addition>
+
+    <addition>
+        <name>Orange Blossom</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_orangeblossom</img>
+    </addition>
+
+    <addition>
+        <name>Coconut</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_coconut</img>
+    </addition>
+
+    <addition>
+        <name>Pink Pepper</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_pinkpepper</img>
+    </addition>
+
+    <addition>
+        <name>Geranium</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_geranium</img>
+    </addition>
+    <addition>
+        <name>Myrrh Essence</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_encensmyrrhe</img>
+    </addition>
+
+    <addition>
+        <name>Ylang Ylang</name>
+        <x>0</x>
+        <y>0</y>
+        <img>notes_ylangylang</img>
+    </addition>
+
 </additions>

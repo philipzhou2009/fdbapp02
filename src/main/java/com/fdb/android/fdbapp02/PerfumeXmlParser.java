@@ -143,7 +143,20 @@ public class PerfumeXmlParser {
             return flower;
         }
 
-        public View drawPerfume(final Activity activity, List<FdbAddition> notes) {
+        public View drawPerfume(final Activity activity, final List<FdbAddition> notes) {
+
+            // convert List to ArrayList
+            final ArrayList<FdbAddition> notesArrayList = new ArrayList<FdbAddition>();
+            for (FdbAddition note: notes)
+            {
+                notesArrayList.add(note);
+            }
+
+            for (FdbAddition noteObj: notesArrayList)
+            {
+                //Log.e("drawPerfume, noteObj.mName=", "|" + noteObj.mName + "|");
+            }
+
             ImageView flower = new ImageView(activity);
             // make flower invisible
             //flower.setImageResource(R.drawable.icon);
@@ -175,6 +188,7 @@ public class PerfumeXmlParser {
                     strList.add(9, perfume.profile);
 
                     myIntent.putExtra("perfumedata", strList);
+                    myIntent.putExtra("notesdata", notesArrayList);
                     activity.startActivityForResult(myIntent, 0);
                 }
             });

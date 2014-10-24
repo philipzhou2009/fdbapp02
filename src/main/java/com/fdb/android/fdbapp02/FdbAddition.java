@@ -26,14 +26,38 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
     public int mImageResId;
 
     // for implementation of Parcelable
-    private int mData;
+    public FdbAddition() {
+    }
+
     public int describeContents() {
         return 0;
     }
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeInt(mData);
+
+    public FdbAddition(Parcel in) {
+        this.mImageName = in.readString();
+        this.mImageResId = in.readInt();
+        this.mName = in.readString();
     }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(this.mImageName);
+        out.writeInt(this.mImageResId);
+        out.writeString(this.mName);
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public FdbAddition createFromParcel(Parcel in) {
+            return new FdbAddition(in);
+        }
+
+        public FdbAddition[] newArray(int size) {
+            return new FdbAddition[size];
+        }
+    };
+
+
     // end of implementation of Parcelable
+
 
     public FdbAddition(String name, float xcoord, float ycoord, String imagename) {
         super(name, xcoord, ycoord, 0);
@@ -44,10 +68,9 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
 
     public TextView createTextView(final Activity activity) {
 
-
         TextView tv = new TextView(activity);
         tv.setText(mName);
-        tv.setTextSize(16f);
+        tv.setTextSize(18);
         tv.setTextColor(Color.WHITE);
         tv.setRotation(mDegree);
         tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);
@@ -66,14 +89,14 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
             @Override
             public void onClick(View v) {
 
-                LayoutInflater layoutInflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View popupView = layoutInflater.inflate(R.layout.popup_ingredient, null);
                 final PopupWindow popupWindow = new PopupWindow(popupView, 1200, 1200);
 
-                ImageView imageView = (ImageView)popupView.findViewById(R.id.popup_image);
+                ImageView imageView = (ImageView) popupView.findViewById(R.id.popup_image);
                 imageView.setImageResource(mImageResId);
 
-                TextView textView = (TextView)popupView.findViewById(R.id.popup_name);
+                TextView textView = (TextView) popupView.findViewById(R.id.popup_name);
                 textView.setText(mName);
 
                 popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
@@ -82,7 +105,7 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
                 aCW.mPW = popupWindow;
 
                 Log.e("fcw", "PopupWindow setAlpha");
-                FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById( R.id.fcwdimlayer);
+                FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById(R.id.fcwdimlayer);
                 layout_MainMenu.setAlpha(0.8f);
 
             }
@@ -91,4 +114,105 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
         return tv;
     }
 
+    public TextView createTextViewNoPosition(final Activity activity, final View parentView) {
+
+        TextView tv;
+
+        if(mTV == null){
+            tv = new TextView(activity);
+            tv.setText(mName);
+            tv.setTextSize(18);
+            tv.setTextColor(Color.WHITE);
+            tv.setRotation(mDegree);
+            tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);
+        }
+        else {
+            tv = mTV;
+        }
+
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View popupView = layoutInflater.inflate(R.layout.popup_ingredient, null);
+                final PopupWindow popupWindow = new PopupWindow(popupView, 1200, 1200);
+
+                ImageView imageView = (ImageView) popupView.findViewById(R.id.popup_image);
+                imageView.setImageResource(mImageResId);
+
+                TextView textView = (TextView) popupView.findViewById(R.id.popup_name);
+                textView.setText(mName);
+
+                popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
+
+                //ColorWheel aCW = (ColorWheel) activity;
+                //aCW.mPW = popupWindow;
+
+                Log.e("fcw", "PopupWindow setAlpha");
+                //FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById(R.id.fcwdimlayer);
+                //layout_MainMenu.setAlpha(0.8f);
+
+            }
+        });
+
+        return tv;
+    }
+
+    public TextView createTextViewWithEvent(final Activity activity, final View parentView) {
+
+        Log.e("fcw", "createTextViewWithEvent");
+        TextView tv;
+
+        /*
+        if(mTV == null){
+            tv = new TextView(activity);
+            tv.setText(mName);
+            tv.setTextSize(18);
+            tv.setTextColor(Color.WHITE);
+            tv.setRotation(mDegree);
+            tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);
+            tv.setTypeface(null, Typeface.BOLD);
+        }
+        else {
+            tv = mTV;
+        }
+        */
+
+        tv = new TextView(activity);
+        tv.setText(mName);
+        tv.setTextSize(18);
+        tv.setTextColor(Color.WHITE);
+        tv.setRotation(mDegree);
+        tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);
+        tv.setTypeface(null, Typeface.BOLD);
+
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View popupView = layoutInflater.inflate(R.layout.popup_ingredient, null);
+                final PopupWindow popupWindow = new PopupWindow(popupView, 1200, 1200);
+
+                ImageView imageView = (ImageView) popupView.findViewById(R.id.popup_image);
+                imageView.setImageResource(mImageResId);
+
+                TextView textView = (TextView) popupView.findViewById(R.id.popup_name);
+                textView.setText(mName);
+
+                popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
+
+                //ColorWheel aCW = (ColorWheel) activity;
+                //aCW.mPW = popupWindow;
+
+                Log.e("fcw", "PopupWindow setAlpha");
+                //FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById(R.id.fcwdimlayer);
+                //layout_MainMenu.setAlpha(0.8f);
+
+            }
+        });
+
+        return tv;
+    }
 }

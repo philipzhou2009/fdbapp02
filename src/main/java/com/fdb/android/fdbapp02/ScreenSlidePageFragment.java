@@ -20,6 +20,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -46,6 +49,7 @@ public class ScreenSlidePageFragment extends Fragment {
     private int mPageNumber;
 
     public static ArrayList<String> perfumedata;
+    public static ArrayList<FdbAddition> mNotes;
 
     GlowingText glowText;
     float startGlowRadius = 25f,
@@ -77,6 +81,19 @@ public class ScreenSlidePageFragment extends Fragment {
         return fragment;
     }
 
+    public static ScreenSlidePageFragment create(int pageNumber, ArrayList<String> strList, ArrayList<FdbAddition> notesData) {
+        ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_PAGE, pageNumber);
+        fragment.setArguments(args);
+
+        //System.out.println("ScreenSlidePageFragment: Contents of perfume data: " + perfumedata);
+        perfumedata = strList;
+        mNotes = notesData;
+
+        return fragment;
+    }
+
     public ScreenSlidePageFragment() {
     }
 
@@ -87,6 +104,8 @@ public class ScreenSlidePageFragment extends Fragment {
         //Context context = getActivity();
         //Toast.makeText(context, "" + mPageNumber, Toast.LENGTH_SHORT).show();
     }
+
+    // stackoverflow.com/questions/11590538/dpi-value-of-default-large-medium-and-small-text-views-android
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,21 +131,92 @@ public class ScreenSlidePageFragment extends Fragment {
         TextView perfumerNameView = (TextView) rootView.findViewById(R.id.perfumerName);
         perfumerNameView.setText("BY " + perfumerName);
 
+        Activity activity = getActivity();
+        final View parentView = activity.findViewById(R.id.pager);
 
         if (mPageNumber == 0) {
             String topNotes = perfumedata.get(3);
+            String middleNotes = perfumedata.get(4);
+            String baseNotes = perfumedata.get(5);
+            /*
             TextView topNotesView = (TextView) rootView.findViewById(R.id.topnotes);
             topNotesView.setText(topNotes);
 
-            String middleNotes = perfumedata.get(4);
             TextView middleNotesView = (TextView) rootView.findViewById(R.id.middlenotes);
             middleNotesView.setText(middleNotes);
 
-            String baseNotes = perfumedata.get(5);
             TextView baseNotesView = (TextView) rootView.findViewById(R.id.basenotes);
             baseNotesView.setText(baseNotes);
+            */
 
-            /*
+            for (FdbAddition noteObj : mNotes) {
+
+                Log.e("fcw, noteObj.mName=", noteObj.mName);
+
+            }
+
+            for (int i = 0; i < 3; i++) {
+                String sNotes = perfumedata.get(i + 3);
+                //Log.e("fcw", sNotes);
+                String sLayoutName = "notesLayout" + Integer.toString(i);
+                //Log.e("fcw", sLayoutName);
+
+                int id = getResources().getIdentifier(sLayoutName, "id", activity.getPackageName());
+                LinearLayout notesLayout = (LinearLayout) rootView.findViewById(id);
+
+                String[] notes = sNotes.split(",");
+                if (notes.length > 0) {
+                    for (String noteName : notes) {
+                        String noteNameNew = noteName.trim();
+
+                        Log.e("fcw,current note:", noteNameNew);
+                        TextView textView = null;
+                        boolean bFlag = false;
+                        for (FdbAddition noteObj : mNotes) {
+
+                            if (noteObj.mName.equalsIgnoreCase(noteNameNew)) {
+                                textView = noteObj.createTextViewWithEvent(activity, parentView);
+                                bFlag = true;
+                                break;
+                            }
+
+                        }
+                        if (bFlag == false) {
+                            textView = new TextView(activity);
+                            textView.setText(noteNameNew);
+                            textView.setTextSize(18);
+                            textView.setTextColor(Color.WHITE);
+                        }
+                        notesLayout.addView(textView);
+
+                        TextView textView1 = new TextView(activity);
+                        textView1.setText(", ");
+                        textView1.setTextSize(18);
+                        textView1.setTextColor(Color.WHITE);
+
+                        notesLayout.addView(textView1);
+
+                    }
+                }
+            }
+
+/*
+            LinearLayout topnotesLayout = (LinearLayout) rootView.findViewById(R.id.topnotesLayout);
+            String[] notes = topNotes.split(",");
+            System.out.println(Arrays.toString(notes));
+
+            if(notes.length > 0) {
+                for (String note : notes) {
+                    TextView textView = new TextView(activity);
+                    textView.setText(note);
+                    // stackoverflow.com/questions/11590538/dpi-value-of-default-large-medium-and-small-text-views-android
+                    textView.setTextSize(18);
+
+                    topnotesLayout.addView(textView);
+
+                }
+            }
+
             Activity activity = getActivity();
             glowText = new GlowingText(
                     activity,           // Pass activity Object
