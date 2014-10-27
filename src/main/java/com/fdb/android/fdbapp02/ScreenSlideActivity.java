@@ -29,6 +29,8 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 
@@ -167,4 +169,5 @@ public class ScreenSlideActivity extends FragmentActivity {
             return NUM_PAGES;
         }
     }
+
 }

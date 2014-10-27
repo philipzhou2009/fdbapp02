@@ -135,41 +135,27 @@ public class ScreenSlidePageFragment extends Fragment {
         final View parentView = activity.findViewById(R.id.pager);
 
         if (mPageNumber == 0) {
-            String topNotes = perfumedata.get(3);
-            String middleNotes = perfumedata.get(4);
-            String baseNotes = perfumedata.get(5);
             /*
-            TextView topNotesView = (TextView) rootView.findViewById(R.id.topnotes);
-            topNotesView.setText(topNotes);
-
-            TextView middleNotesView = (TextView) rootView.findViewById(R.id.middlenotes);
-            middleNotesView.setText(middleNotes);
-
-            TextView baseNotesView = (TextView) rootView.findViewById(R.id.basenotes);
-            baseNotesView.setText(baseNotes);
-            */
-
             for (FdbAddition noteObj : mNotes) {
-
                 Log.e("fcw, noteObj.mName=", noteObj.mName);
-
             }
+            */
 
             for (int i = 0; i < 3; i++) {
                 String sNotes = perfumedata.get(i + 3);
                 //Log.e("fcw", sNotes);
+
                 String sLayoutName = "notesLayout" + Integer.toString(i);
                 //Log.e("fcw", sLayoutName);
-
                 int id = getResources().getIdentifier(sLayoutName, "id", activity.getPackageName());
                 LinearLayout notesLayout = (LinearLayout) rootView.findViewById(id);
 
                 String[] notes = sNotes.split(",");
-                if (notes.length > 0) {
+                if (notes.length > 0 && !sNotes.equals("")) {
                     for (String noteName : notes) {
                         String noteNameNew = noteName.trim();
 
-                        Log.e("fcw,current note:", noteNameNew);
+                        //Log.e("fcw,current note:", noteNameNew);
                         TextView textView = null;
                         boolean bFlag = false;
                         for (FdbAddition noteObj : mNotes) {
@@ -199,35 +185,6 @@ public class ScreenSlidePageFragment extends Fragment {
                     }
                 }
             }
-
-/*
-            LinearLayout topnotesLayout = (LinearLayout) rootView.findViewById(R.id.topnotesLayout);
-            String[] notes = topNotes.split(",");
-            System.out.println(Arrays.toString(notes));
-
-            if(notes.length > 0) {
-                for (String note : notes) {
-                    TextView textView = new TextView(activity);
-                    textView.setText(note);
-                    // stackoverflow.com/questions/11590538/dpi-value-of-default-large-medium-and-small-text-views-android
-                    textView.setTextSize(18);
-
-                    topnotesLayout.addView(textView);
-
-                }
-            }
-
-            Activity activity = getActivity();
-            glowText = new GlowingText(
-                    activity,           // Pass activity Object
-                    activity.getBaseContext(),   // Context
-                    topNotesView,           // TextView
-                    minGlowRadius,      // Minimum Glow Radius
-                    maxGlowRadius,      // Maximum Glow Radius
-                    startGlowRadius,    // Start Glow Radius - Increases to MaxGlowRadius then decreases to MinGlowRadius.
-                    Color.WHITE,         // Glow Color (int)
-                    gGlowSpeed);                 // Glowing Transition Speed (Range of 1 to 10)
-                    */
 
         } else {
             String perfumerPortrait = perfumedata.get(8);

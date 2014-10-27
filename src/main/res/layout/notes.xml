@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="false"
             android:background="#c8006488"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="16dp"
             android:weightSum="1">
@@ -33,7 +33,9 @@
                 android:layout_width="141dp"
                 android:layout_height="190dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/logo_gold_effect_hr_2_500" />
+                android:src="@drawable/logo_gold_effect_hr_2_500"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp" />
 
             <TextView
                 android:id="@+id/perfumeTitle"
@@ -55,7 +57,7 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="220dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
@@ -63,7 +65,8 @@
                 android:text="All our fragrances contain 100% organic Oud oil from sustainable sources"
                 android:textAlignment="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:textSize="20sp" />
 
             <View
                 android:layout_width="160dp"
@@ -86,7 +89,9 @@
                 android:text="Top Notes"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="italic"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -110,7 +115,9 @@
                 android:text="Middle Notes"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="italic"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -132,7 +139,9 @@
                 android:text="Base Notes"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="italic"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -157,6 +166,14 @@
                 android:background="@android:color/white" />
 
         </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/fcwdimlayer"
+            android:foreground="#000000"
+            android:alpha="0">
+        </FrameLayout>
 
 
     </RelativeLayout>

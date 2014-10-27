@@ -11,6 +11,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -114,54 +115,9 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
         return tv;
     }
 
-    public TextView createTextViewNoPosition(final Activity activity, final View parentView) {
-
-        TextView tv;
-
-        if(mTV == null){
-            tv = new TextView(activity);
-            tv.setText(mName);
-            tv.setTextSize(18);
-            tv.setTextColor(Color.WHITE);
-            tv.setRotation(mDegree);
-            tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);
-        }
-        else {
-            tv = mTV;
-        }
-
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View popupView = layoutInflater.inflate(R.layout.popup_ingredient, null);
-                final PopupWindow popupWindow = new PopupWindow(popupView, 1200, 1200);
-
-                ImageView imageView = (ImageView) popupView.findViewById(R.id.popup_image);
-                imageView.setImageResource(mImageResId);
-
-                TextView textView = (TextView) popupView.findViewById(R.id.popup_name);
-                textView.setText(mName);
-
-                popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
-
-                //ColorWheel aCW = (ColorWheel) activity;
-                //aCW.mPW = popupWindow;
-
-                Log.e("fcw", "PopupWindow setAlpha");
-                //FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById(R.id.fcwdimlayer);
-                //layout_MainMenu.setAlpha(0.8f);
-
-            }
-        });
-
-        return tv;
-    }
-
     public TextView createTextViewWithEvent(final Activity activity, final View parentView) {
 
-        Log.e("fcw", "createTextViewWithEvent");
+        //Log.e("fcw", "createTextViewWithEvent");
         TextView tv;
 
         /*
@@ -184,8 +140,10 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
         tv.setTextSize(18);
         tv.setTextColor(Color.WHITE);
         tv.setRotation(mDegree);
-        tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);
+        tv.setShadowLayer((float) 0.1, 4, 3, Color.BLACK);
         tv.setTypeface(null, Typeface.BOLD);
+
+        mTV = tv;
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,16 +161,37 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
 
                 popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
 
-                //ColorWheel aCW = (ColorWheel) activity;
-                //aCW.mPW = popupWindow;
+                //Log.e("fcw", "PopupWindow setAlpha");
+                FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById(R.id.fcwdimlayer);
+                layout_MainMenu.setAlpha(0.8f);
 
-                Log.e("fcw", "PopupWindow setAlpha");
-                //FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById(R.id.fcwdimlayer);
-                //layout_MainMenu.setAlpha(0.8f);
+                View popup_ingredient = popupView.findViewById(R.id.popup_ingredient);
+                popup_ingredient.setOnTouchListener(new View.OnTouchListener() {
+
+                    @Override
+                    public boolean onTouch(View arg0, MotionEvent arg1) {
+                        popupWindow.dismiss();
+                        FrameLayout layout_MainMenu = (FrameLayout) activity.findViewById(R.id.fcwdimlayer);
+                        layout_MainMenu.setAlpha(0.0f);
+                        return true;
+                    }
+                });
 
             }
         });
 
         return tv;
+    }
+
+    public void adjustTextView() {
+        TextView textView = mTV;
+
+        mRealX = mXcoord + mLX;
+        mRealY = mYcoord + mLY;
+        textView.setX(mRealX);
+        textView.setY(mRealY);
+
+        // margin and padding
+        textView.setPadding(0, 0, 5, 0);
     }
 }

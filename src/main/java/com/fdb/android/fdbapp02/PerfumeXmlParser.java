@@ -84,6 +84,8 @@ public class PerfumeXmlParser {
         float mRealX = 0;
         float mRealY = 0;
 
+        View mFlower=null;
+
         private Entry(String title, String perfumer, String topnotes, String middlenotes,
                       String basenodes, String thumbnail, String themecolor, String fontcolor, String portrait, String profile, String cwx, String cwy) {
             this.title = title;
@@ -100,6 +102,25 @@ public class PerfumeXmlParser {
             this.cwy = cwy;
             this.mXcoord = Float.parseFloat(cwx);
             this.mYcoord = Float.parseFloat(cwy);
+            this.mRealX = mXcoord + mLX;
+            this.mRealY = mYcoord + mLY;
+        }
+
+        public Entry(Entry parentEntry) {
+            this.title = parentEntry.title;
+            this.perfumer = parentEntry.perfumer;
+            this.topnotes = parentEntry.topnotes;
+            this.middlenotes = parentEntry.middlenotes;
+            this.basenodes = parentEntry.basenodes;
+            this.thumbnail = parentEntry.thumbnail;
+            this.themecolor = parentEntry.themecolor;
+            this.fontcolor = parentEntry.fontcolor;
+            this.portrait = parentEntry.portrait;
+            this.profile = parentEntry.profile;
+            this.cwx = parentEntry.cwx;
+            this.cwy = parentEntry.cwy;
+            this.mXcoord = Float.parseFloat(parentEntry.cwx);
+            this.mYcoord = Float.parseFloat(parentEntry.cwy);
             this.mRealX = mXcoord + mLX;
             this.mRealY = mYcoord + mLY;
         }
@@ -157,15 +178,18 @@ public class PerfumeXmlParser {
                 //Log.e("drawPerfume, noteObj.mName=", "|" + noteObj.mName + "|");
             }
 
+            int flowerWidth = 110;
             ImageView flower = new ImageView(activity);
             // make flower invisible
             //flower.setImageResource(R.drawable.icon);
             //flower.setVisibility(View.INVISIBLE);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(80, 80);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(flowerWidth, flowerWidth);
             flower.setLayoutParams(layoutParams);
 
             flower.setX(mRealX);
             flower.setY(mRealY);
+
+            mFlower = flower;
 
             final Entry perfume = this;
             flower.setOnClickListener(new View.OnClickListener() {

@@ -95,7 +95,6 @@ public class ColorWheel extends Activity {
 
         // draw invisible squares
         for (PerfumeXmlParser.Entry perfume : mPerfumes) {
-            //View view = perfume.drawFlower(this);
             View view = perfume.drawPerfume(this, mAdditions);
             colorWheelLayout.addView(view);
         }
@@ -137,77 +136,52 @@ public class ColorWheel extends Activity {
             }
         }
 
-        if (iCount == 3) {// time to flower
-            FdbWheeler wheeler1 = aEntries.get(0);
-            FdbWheeler wheeler2 = aEntries.get(1);
-            FdbWheeler wheeler3 = aEntries.get(2);
+        if (iCount != 3) {
 
-            int flowerWidth = 50;
-
-            float fCentralX = (wheeler1.mRealX + wheeler2.mRealX + wheeler3.mRealX) / 3 - flowerWidth / 2;
-            float fCentralY = (wheeler1.mRealY + wheeler2.mRealY + wheeler3.mRealY) / 3 - flowerWidth / 2;
-
-            ImageView flower = new ImageView(this);
-            flower.setImageResource(R.drawable.icon);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(flowerWidth, flowerWidth);
-            flower.setLayoutParams(layoutParams);
-
-            flower.setX(fCentralX);
-            flower.setY(fCentralY);
-
-            mCWLayout.addView(flower);
-
-            // find the related perfume
-            float fDistance = 0f, xcoord, ycoord, fTmp;
-            int iCursor = 0, iFlag = 0;
-            for (PerfumeXmlParser.Entry perfume : mPerfumes) {
-                xcoord = perfume.mRealX;
-                ycoord = perfume.mRealY;
-                fTmp = (fCentralX - xcoord) * (fCentralX - xcoord) + (fCentralY - ycoord) * (fCentralY - ycoord);
-                //Log.e("fdb", Float.toString(fTmp));
-
-                if (iCursor == 0 && fTmp <= 10000) {
-                    iFlag = 0;
-                    break;
-                } else if ((fTmp <= fDistance || fDistance == 0f) && iCursor != 0) {
-                    fDistance = fTmp;
-                    iFlag = iCursor;
-                }
-
-                iCursor++;
-
-            }
-            //Log.e("fdb", Integer.toString(iFlag));
-
-            final PerfumeXmlParser.Entry perfume = mPerfumes.get(iFlag);
-
-            // set event
-            flower.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //Log.e("fdb:PerfumeXmlParser", "flower.setOnClickListener");
-                    Intent myIntent;
-                    myIntent = new Intent(v.getContext(), ScreenSlideActivity.class);
-                    ArrayList<String> strList = new ArrayList();
-
-                    strList.add(0, perfume.title);
-                    strList.add(1, perfume.thumbnail);
-                    strList.add(2, perfume.themecolor);
-                    strList.add(3, perfume.topnotes);
-                    strList.add(4, perfume.middlenotes);
-                    strList.add(5, perfume.basenodes);
-                    strList.add(6, perfume.perfumer);
-                    strList.add(7, perfume.fontcolor);
-                    strList.add(8, perfume.portrait);
-                    strList.add(9, perfume.profile);
-
-                    myIntent.putExtra("perfumedata", strList);
-                    startActivityForResult(myIntent, 0);
-                }
-            });
-
+            return;
         }
 
+        FdbWheeler wheeler1 = aEntries.get(0);
+        FdbWheeler wheeler2 = aEntries.get(1);
+        FdbWheeler wheeler3 = aEntries.get(2);
+
+        int flowerWidth = 50;
+
+        float fCentralX = (wheeler1.mRealX + wheeler2.mRealX + wheeler3.mRealX) / 3 - flowerWidth / 2;
+        float fCentralY = (wheeler1.mRealY + wheeler2.mRealY + wheeler3.mRealY) / 3 - flowerWidth / 2;
+
+        // find the related perfume
+        float fDistance = 0f, xcoord, ycoord, fTmp;
+        int iCursor = 0, iFlag = 0;
+        for (PerfumeXmlParser.Entry perfume : mPerfumes) {
+            xcoord = perfume.mRealX;
+            ycoord = perfume.mRealY;
+            fTmp = (fCentralX - xcoord) * (fCentralX - xcoord) + (fCentralY - ycoord) * (fCentralY - ycoord);
+            //Log.e("fdb", Float.toString(fTmp));
+
+            if (iCursor == 0 && fTmp <= 10000) {
+                iFlag = 0;
+                break;
+            } else if ((fTmp <= fDistance || fDistance == 0f) && iCursor != 0) {
+                fDistance = fTmp;
+                iFlag = iCursor;
+            }
+
+            iCursor++;
+        }
+
+        final PerfumeXmlParser.Entry perfume = mPerfumes.get(iFlag);
+        PerfumeXmlParser.Entry flowerEntry = new PerfumeXmlParser.Entry(perfume);
+        flowerEntry.drawPerfume(this, mAdditions);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(flowerWidth, flowerWidth);
+        ImageView flower = (ImageView)flowerEntry.mFlower;
+        flower.setImageResource(R.drawable.icon);
+        flower.setLayoutParams(layoutParams);
+
+        flower.setX(fCentralX);
+        flower.setY(fCentralY);
+
+        mCWLayout.addView(flower);
     }
 
     public void drawBloomingAnim(ArrayList<float[]> coordsList) {
@@ -306,16 +280,18 @@ public class ColorWheel extends Activity {
 
             if(addition.mXcoord != 0) {
                 // only x,y != 0, it's additional;
-
                 String name = addition.mName;
                 Log.e("fcw", name);
-                TextView tv = addition.createTextView(this);
+                //TextView tv = addition.createTextView(this);
+                TextView tv = addition.createTextViewWithEvent(this, mCWLayout);
+                addition.adjustTextView();
                 mCWLayout.addView(tv);
             }
         }
     }
 
     // http://stackoverflow.com/questions/5645081/android-touch-event-on-screen
+    /*
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         //Log.e("fcw", "onTouchEvent");
@@ -326,4 +302,5 @@ public class ColorWheel extends Activity {
         }
         return super.onTouchEvent(event);
     }
+    */
 }
