@@ -65,6 +65,9 @@ public class PerfumeXmlParser {
     // This class represents a single entry (post) in the XML feed.
     // It includes the data members "title," "link," and "summary."
     public static class Entry {
+        public static float mScreenRatioW;
+        public static float mScreenRatioH;
+
         public final String title;
         public final String perfumer;
         public final String topnotes;
@@ -81,6 +84,8 @@ public class PerfumeXmlParser {
         public final float mYcoord;
         final float mLX = 800f;
         final float mLY = 150f;
+        //final float mLX = 740f;
+        //final float mLY = 225f;
         float mRealX = 0;
         float mRealY = 0;
 
@@ -102,8 +107,8 @@ public class PerfumeXmlParser {
             this.cwy = cwy;
             this.mXcoord = Float.parseFloat(cwx);
             this.mYcoord = Float.parseFloat(cwy);
-            this.mRealX = mXcoord + mLX;
-            this.mRealY = mYcoord + mLY;
+            this.mRealY = FdbHelper.fdbHelperCalcYCoord((mYcoord + mLY));
+            this.mRealX = FdbHelper.fdbHelperCalcXCoord(this.mRealY, (mXcoord + mLX), (mYcoord + mLY));
         }
 
         public Entry(Entry parentEntry) {
@@ -121,8 +126,10 @@ public class PerfumeXmlParser {
             this.cwy = parentEntry.cwy;
             this.mXcoord = Float.parseFloat(parentEntry.cwx);
             this.mYcoord = Float.parseFloat(parentEntry.cwy);
-            this.mRealX = mXcoord + mLX;
-            this.mRealY = mYcoord + mLY;
+
+            this.mRealY = FdbHelper.fdbHelperCalcYCoord((mYcoord + mLY));
+            this.mRealX = FdbHelper.fdbHelperCalcXCoord(this.mRealY, (mXcoord + mLX), (mYcoord + mLY));
+
         }
 
         public View drawFlower(final Activity activity) {
@@ -182,7 +189,6 @@ public class PerfumeXmlParser {
             ImageView flower = new ImageView(activity);
             // make flower invisible
             //flower.setImageResource(R.drawable.icon);
-            //flower.setVisibility(View.INVISIBLE);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(flowerWidth, flowerWidth);
             flower.setLayoutParams(layoutParams);
 

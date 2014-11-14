@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +13,10 @@ import android.widget.TextView;
  * Created by philip on 12/10/14.
  */
 public class FdbWheeler implements Comparable<FdbWheeler>{
+
+    //static float mScreenRatioW = 1.0f;
+    //static float mScreenRatioH = 1.0f;
+
     public String mName = "";
     public float mXcoord;
     public float mYcoord;
@@ -20,6 +25,8 @@ public class FdbWheeler implements Comparable<FdbWheeler>{
     boolean mFlag = false;
     final float mLX = 740f;
     final float mLY = 225f;
+    //final float mLX = 800f;
+    //final float mLY = 150f;
 
     float mRealX = 0;
     float mRealY = 0;
@@ -35,42 +42,6 @@ public class FdbWheeler implements Comparable<FdbWheeler>{
         mYcoord = ycoord;
         mDegree = degree;
         mFlag = false;
-    }
-
-    public TextView createTextView0(final Activity activity) {
-        TextView tv = new TextView(activity);
-        tv.setText(mName);
-        tv.setTextColor(Color.WHITE);
-        tv.setRotation(mDegree);
-
-        mRealX = mXcoord + mLX;
-        mRealY = mYcoord + mLY;
-        tv.setX(mRealX);
-        tv.setY(mRealY);
-
-        final FdbWheeler wheeler = this;
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextView tv = (TextView) v;
-                if (wheeler.mFlag == false) {
-                    tv.setTextSize(16);
-                    tv.setTypeface(Typeface.DEFAULT_BOLD);
-                    tv.setShadowLayer((float) 0.06, 5, 5, Color.BLACK);
-                    wheeler.mFlag = true;
-                    //activity.drawFlower();
-                } else {
-                    tv.setTextSize(14);
-                    tv.setTypeface(Typeface.DEFAULT);
-                    tv.setShadowLayer((float) 0, 3, 3, Color.BLACK);
-                    wheeler.mFlag = false;
-                }
-            }
-        });
-
-        mTV = tv;
-
-        return tv;
     }
 
     public void grayOut() {
@@ -99,15 +70,17 @@ public class FdbWheeler implements Comparable<FdbWheeler>{
                 //TextView tv = (TextView) v;
                 TextView tv = (TextView) v.findViewById(R.id.grid_text);
                 if (wheeler.mFlag == false) {
-                    tv.setTextSize(26);
-                    tv.setTypeface(Typeface.DEFAULT_BOLD);
-                    tv.setShadowLayer((float) 0.06, 3, 3, Color.GRAY);
                     wheeler.mFlag = true;
+                    tv.setTextSize(24);
+                    tv.setTypeface(Typeface.DEFAULT_BOLD);
+                    tv.setShadowLayer((float) 0.07, 3, 2, Color.GRAY);
+
                 } else {
+                    wheeler.mFlag = false;
                     tv.setTextSize(22);
                     tv.setTypeface(Typeface.DEFAULT);
                     tv.setShadowLayer((float) 0, 3, 3, Color.BLACK);
-                    wheeler.mFlag = false;
+
                 }
                 context.showColorWheelButton();
             }
@@ -123,8 +96,16 @@ public class FdbWheeler implements Comparable<FdbWheeler>{
         tv.setRotation(mDegree);
         tv.setShadowLayer((float) 0.06, 5, 5, Color.BLACK);
 
-        mRealX = mXcoord + mLX;
-        mRealY = mYcoord + mLY;
+        /*
+        mRealX = (mXcoord + mLX) * mScreenRatioW;
+        mRealY = (mYcoord + mLY) * mScreenRatioH;
+        */
+
+        mRealY = FdbHelper.fdbHelperCalcYCoord(mYcoord + mLY);
+        mRealX = FdbHelper.fdbHelperCalcXCoord(mRealY, (mXcoord + mLX), (mYcoord + mLY));
+        Log.e("fcw, mRealX=", Float.toString(mRealX));
+        Log.e("fcw, mRealY=", Float.toString(mRealY));
+
         tv.setX(mRealX);
         tv.setY(mRealY);
 

@@ -7,6 +7,7 @@ package com.fdb.android.fdbapp02;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -21,6 +22,9 @@ import java.util.List;
 
 public class FdbHelper {
     private static final String ns = null;
+    public static float mDiameterRatio = 1.0f;
+    public static float mScreenWidth = 2560.0f;
+    public static float mScreenHeight = 1600.0f;
 
     public static int getId(String resourceName, Class<?> c) {
         try {
@@ -320,6 +324,29 @@ public class FdbHelper {
         return new FdbAddition(title, xcoord, ycoord, imagename);
     }
 
+    public static float fdbHelperCalcYCoord(float ycoord) {
+        float rycoord = 0f;
 
+        rycoord = (ycoord - 800) * mDiameterRatio + mScreenHeight/2.0f;
+
+        return rycoord;
+
+    }
+
+    public static float fdbHelperCalcXCoord(float ycoord, float xorg, float yorg) {
+
+        double fTmp1 = mDiameterRatio * mDiameterRatio * ((xorg - 1280.0f) * (xorg - 1280.0f) + (yorg - 800.0f) * (yorg - 800.0f)) - (ycoord - mScreenHeight/2.0f)*(ycoord - mScreenHeight/2.0f) ;
+        double fTmp2 = Math.sqrt(fTmp1);
+        float dTmp3 = 0f;
+        if(xorg > 1280.0f) {
+            dTmp3 = (float) (mScreenWidth / 2.0 + fTmp2);
+        }
+        else {
+            dTmp3 = (float) (mScreenWidth / 2.0 - fTmp2);
+        }
+        //Log.e("fcw, xxx=", Float.toString((ycoord - mScreenHeight / 2.0f) * (ycoord - mScreenHeight / 2.0f)));
+
+        return dTmp3;
+    }
 }
 

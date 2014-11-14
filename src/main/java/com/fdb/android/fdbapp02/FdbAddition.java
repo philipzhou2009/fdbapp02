@@ -25,6 +25,8 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
 
     public String mImageName;
     public int mImageResId;
+    public static float mScreenHeight=1600.0f;
+    public static float mPopupRatio = 0.9f;
 
     // for implementation of Parcelable
     public FdbAddition() {
@@ -76,8 +78,12 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
         tv.setRotation(mDegree);
         tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);
 
-        mRealX = mXcoord + mLX;
-        mRealY = mYcoord + mLY;
+        //mRealX = mXcoord + mLX;
+        //mRealY = mYcoord + mLY;
+
+        mRealY = FdbHelper.fdbHelperCalcYCoord((mYcoord + mLY));
+        mRealX = FdbHelper.fdbHelperCalcXCoord(this.mRealY, (mXcoord + mLX), (mYcoord + mLY));
+
         tv.setX(mRealX);
         tv.setY(mRealY);
 
@@ -92,7 +98,8 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
 
                 LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View popupView = layoutInflater.inflate(R.layout.popup_ingredient, null);
-                final PopupWindow popupWindow = new PopupWindow(popupView, 1200, 1200);
+                int iPopupWidth = (int)(mScreenHeight * mPopupRatio);
+                final PopupWindow popupWindow = new PopupWindow(popupView, iPopupWidth, iPopupWidth);
 
                 ImageView imageView = (ImageView) popupView.findViewById(R.id.popup_image);
                 imageView.setImageResource(mImageResId);
@@ -119,22 +126,6 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
 
         //Log.e("fcw", "createTextViewWithEvent");
         TextView tv;
-
-        /*
-        if(mTV == null){
-            tv = new TextView(activity);
-            tv.setText(mName);
-            tv.setTextSize(18);
-            tv.setTextColor(Color.WHITE);
-            tv.setRotation(mDegree);
-            tv.setShadowLayer((float) 0.1, 4, 4, Color.BLACK);
-            tv.setTypeface(null, Typeface.BOLD);
-        }
-        else {
-            tv = mTV;
-        }
-        */
-
         tv = new TextView(activity);
         tv.setText(mName);
         tv.setTextSize(18);
@@ -151,7 +142,8 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
 
                 LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View popupView = layoutInflater.inflate(R.layout.popup_ingredient, null);
-                final PopupWindow popupWindow = new PopupWindow(popupView, 1200, 1200);
+                int iPopupWidth = (int)(mScreenHeight * mPopupRatio);
+                final PopupWindow popupWindow = new PopupWindow(popupView, iPopupWidth, iPopupWidth);
 
                 ImageView imageView = (ImageView) popupView.findViewById(R.id.popup_image);
                 imageView.setImageResource(mImageResId);
@@ -186,8 +178,10 @@ public class FdbAddition extends FdbWheeler implements Parcelable {
     public void adjustTextView() {
         TextView textView = mTV;
 
-        mRealX = mXcoord + mLX;
-        mRealY = mYcoord + mLY;
+        //mRealX = mXcoord + mLX;
+        //mRealY = mYcoord + mLY;
+        mRealY = FdbHelper.fdbHelperCalcYCoord((mYcoord + mLY));
+        mRealX = FdbHelper.fdbHelperCalcXCoord(this.mRealY, (mXcoord + mLX), (mYcoord + mLY));
         textView.setX(mRealX);
         textView.setY(mRealY);
 

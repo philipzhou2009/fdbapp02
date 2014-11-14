@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="10dp"
     android:orientation="vertical"
     android:gravity="center">
     <!--
@@ -21,6 +20,7 @@
         android:textSize="24sp"
         android:textColor="#ff89723a"
         android:textStyle="normal"
-        android:padding="5dp">
+        android:padding="10dp"
+        >
     </TextView>
 </LinearLayout>

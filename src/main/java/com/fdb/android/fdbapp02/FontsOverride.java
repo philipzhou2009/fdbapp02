@@ -13,8 +13,7 @@ public final class FontsOverride {
 
     public static void setDefaultFont(Context context,
                                       String staticTypefaceFieldName, String fontAssetName) {
-        final Typeface regular = Typeface.createFromAsset(context.getAssets(),
-                fontAssetName);
+        final Typeface regular = Typeface.createFromAsset(context.getAssets(), fontAssetName);
         replaceFont(staticTypefaceFieldName, regular);
     }
 
@@ -39,7 +38,7 @@ public final class FontsOverride {
             final Typeface italic = Typeface.createFromAsset(context.getAssets(),
                     "fonts/Adobe Garamond Italic.ttf");
             final Typeface boldItalic = Typeface.createFromAsset(context.getAssets(),
-                    "fonts/Adobe Garamond Italic.ttf");
+                    "fonts/Adobe Garamond Bold Italic.ttf");
             final Typeface regular = Typeface.createFromAsset(context.getAssets(),
                     "fonts/Adobe Garamond Regular.ttf");
 
@@ -47,15 +46,13 @@ public final class FontsOverride {
             DEFAULT.setAccessible(true);
             DEFAULT.set(null, regular);
 
-            Field DEFAULT_BOLD = Typeface.class
-                    .getDeclaredField("DEFAULT_BOLD");
+            Field DEFAULT_BOLD = Typeface.class.getDeclaredField("DEFAULT_BOLD");
             DEFAULT_BOLD.setAccessible(true);
             DEFAULT_BOLD.set(null, bold);
 
             Field sDefaults = Typeface.class.getDeclaredField("sDefaults");
             sDefaults.setAccessible(true);
-            sDefaults.set(null, new Typeface[] { regular, bold, italic,
-                    boldItalic });
+            sDefaults.set(null, new Typeface[] { regular, bold, italic, boldItalic });
 
         } catch (Throwable e) {
             e.printStackTrace();

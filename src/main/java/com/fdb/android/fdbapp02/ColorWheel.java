@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -45,6 +48,33 @@ public class ColorWheel extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_wheel);
 
+        // get screen size in pixel
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        Log.e("fcw screen width=", Integer.toString(width));
+        Log.e("fcw screen height=", Integer.toString(height));
+
+        float mDiameterRatio = height/1600.0f;
+        FdbHelper.mDiameterRatio = mDiameterRatio;
+        FdbHelper.mScreenHeight = height;
+        FdbHelper.mScreenWidth = width;
+
+        FdbAddition.mScreenHeight = height;
+
+        /*
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        Log.e("fcw dpWidth=", Float.toString(dpWidth));
+        Log.e("fcw dpHeight=", Float.toString(dpHeight));
+        DisplayMetrics dm = this.getResources().getDisplayMetrics();
+        int densityDpi = dm.densityDpi;
+        Log.e("fcw densityDpi=", Integer.toString(densityDpi));
+        */
+
         try {
             mFdbWheelers = FdbHelper.loadPersonalityXml(this);
             mPerfumes = FdbHelper.loadPerfumeXml(this);
@@ -74,11 +104,9 @@ public class ColorWheel extends Activity {
             } else {
                 for (String select : mSelections) {
                     if (wheeler.mName.equals(select)) {
-
                         TextView tv = wheeler.createTextView(this);
                         // no show texts
                         //colorWheelLayout.addView(tv);
-
                         float coordsXY[] = {wheeler.mRealX, wheeler.mRealY};
                         coordsList.add(coordsXY);
                     }
@@ -93,7 +121,7 @@ public class ColorWheel extends Activity {
         this.drawFlower();
         this.drawBloomingAnim(coordsList);
 
-        // draw invisible squares
+        // draw invisible squares for perfumes
         for (PerfumeXmlParser.Entry perfume : mPerfumes) {
             View view = perfume.drawPerfume(this, mAdditions);
             colorWheelLayout.addView(view);
