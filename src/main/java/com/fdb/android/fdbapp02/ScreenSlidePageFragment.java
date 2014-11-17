@@ -19,6 +19,7 @@ package com.fdb.android.fdbapp02;
 import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -135,6 +136,7 @@ public class ScreenSlidePageFragment extends Fragment {
         final View parentView = activity.findViewById(R.id.pager);
 
         if (mPageNumber == 0) {
+            /* notes */
             /*
             for (FdbAddition noteObj : mNotes) {
                 Log.e("fcw, noteObj.mName=", noteObj.mName);
@@ -172,6 +174,7 @@ public class ScreenSlidePageFragment extends Fragment {
                             textView.setText(noteNameNew);
                             textView.setTextSize(18);
                             textView.setTextColor(Color.WHITE);
+                            textView.setTypeface(Typeface.MONOSPACE);
                         }
                         notesLayout.addView(textView);
 
@@ -187,6 +190,7 @@ public class ScreenSlidePageFragment extends Fragment {
             }
 
         } else {
+            /* perfumer */
             String perfumerPortrait = perfumedata.get(8);
             Integer portraitImageId = FdbHelper.getId(perfumerPortrait, R.drawable.class);
 

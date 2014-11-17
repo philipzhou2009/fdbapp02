@@ -19,5 +19,6 @@
         android:text="Start"
         android:id="@+id/textView2"
         android:textColor="#ff89723a"
-        android:textSize="46sp" />
+        android:textSize="46sp"
+        android:typeface="monospace" />
 </LinearLayout>

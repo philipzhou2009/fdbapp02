@@ -21,6 +21,6 @@
         android:textColor="#ff89723a"
         android:textStyle="normal"
         android:padding="10dp"
-        >
+        android:typeface="monospace">
     </TextView>
 </LinearLayout>

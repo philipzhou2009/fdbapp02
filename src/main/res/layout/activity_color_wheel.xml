@@ -50,7 +50,8 @@
             android:text="Customize"
             android:id="@+id/textView2"
             android:textColor="#ff89723a"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:typeface="monospace" />
 
     </LinearLayout>
 

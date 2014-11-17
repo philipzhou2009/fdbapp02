@@ -54,6 +54,29 @@ public final class FontsOverride {
             sDefaults.setAccessible(true);
             sDefaults.set(null, new Typeface[] { regular, bold, italic, boldItalic });
 
+
+            /*
+            final Typeface normal = Typeface.createFromAsset(context.getAssets(), "fonts/Adobe Garamond Regular.ttf");
+            Field normalfDefaultField = Typeface.class.getDeclaredField("NORMAL");
+            normalfDefaultField.setAccessible(true);
+            normalfDefaultField.set(null, normal);
+            */
+
+            final Typeface normal_sans = Typeface.createFromAsset(context.getAssets(), "fonts/Adobe Garamond Regular.ttf");
+            Field sansSerifDefaultField = Typeface.class.getDeclaredField("SANS_SERIF");
+            sansSerifDefaultField.setAccessible(true);
+            sansSerifDefaultField.set(null, normal_sans);
+
+            final Typeface normal_serif = Typeface.createFromAsset(context.getAssets(), "fonts/Adobe Garamond Regular.ttf");
+            Field serifDefaultField = Typeface.class.getDeclaredField("SERIF");
+            serifDefaultField.setAccessible(true);
+            serifDefaultField.set(null, normal_serif);
+
+            final Typeface normal_monospace = Typeface.createFromAsset(context.getAssets(), "fonts/Adobe Garamond Regular.ttf");
+            Field monospaceDefaultField = Typeface.class.getDeclaredField("MONOSPACE");
+            monospaceDefaultField.setAccessible(true);
+            monospaceDefaultField.set(null, normal_monospace);
+
         } catch (Throwable e) {
             e.printStackTrace();
         }

@@ -42,7 +42,8 @@
                 android:text="Medium Text"
                 android:id="@+id/perfumeTitle"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:typeface="monospace" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,7 +52,8 @@
                 android:text="Medium Text"
                 android:id="@+id/perfumerName"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:typeface="monospace" />
 
             <ImageView
                 android:layout_width="200dp"
@@ -69,7 +71,8 @@
                 android:layout_gravity="center|top"
                 android:gravity="center"
                 android:textColor="#ffffffff"
-                android:text="Medium Text" />
+                android:text="Medium Text"
+                android:typeface="monospace" />
 
         </LinearLayout>
 

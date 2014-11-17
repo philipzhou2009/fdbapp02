@@ -43,7 +43,8 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:typeface="monospace" />
 
             <TextView
                 android:id="@+id/perfumerName"
@@ -52,7 +53,8 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:typeface="monospace" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -65,7 +67,8 @@
                 android:textAlignment="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:typeface="monospace" />
 
             <View
                 android:layout_width="160dp"
@@ -155,7 +158,8 @@
                 android:layout_gravity="center_horizontal"
                 android:text="100% pure organic vintage Oud"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:typeface="monospace" />
 
             <View
                 android:layout_width="260dp"
